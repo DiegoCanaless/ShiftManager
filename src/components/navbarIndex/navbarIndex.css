@@ -1,0 +1,16 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 100%;
+    align-items: center;
+    background-color: var(--colorPrimario);
+    color: white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
