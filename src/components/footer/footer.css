@@ -1,0 +1,90 @@
+.footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2.5vh;
+    padding: 7vh;
+    padding-bottom: 25vh;
+    border-bottom: 1px solid #000000;
+}
+
+.footerContenido {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.iconosFooter {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.iconX {
+    width: 23px;
+}
+
+.iconInstagram {
+    width: 22px;
+}
+
+.iconFacebook {
+    width: 29px;
+}
+
+.iconEmail {
+    width: 24px;
+}
+.textoFooter p{
+    font-size: 0.7rem;
+}
+
+.imagenFooter {
+    width: 18vw;
+    margin-left: 5vw;
+}
+
+.imagenFooter2 {
+    width: 18vw;
+    display: none;
+}
+
+@media (min-width: 379px) {
+
+    .textoFooter p{
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 433px) {
+    .footer {
+        
+    }
+
+    .imagenFooter {
+        width: 70px;
+    }
+}
+
+@media (min-width: 847px) {
+    .footer {
+        display: flex;
+        padding: 0px;
+        padding-bottom: 25vh;
+        flex-direction: column;
+        
+    }
+
+    .imagenFooter {
+        display: none;
+    }
+
+    .imagenFooter2 {
+        display: block;
+        margin-top: 5vh;
+        margin-bottom: 29px;
+        width: 90px;
+    }
+}
+        
