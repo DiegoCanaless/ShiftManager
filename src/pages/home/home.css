@@ -1,0 +1,81 @@
+.contInicio {
+    height: 100vh;
+    width: 100%;
+    position: relative; /* Necesario para posicionar la pseudocapa */
+    overflow: hidden; /* Evita que la pseudocapa sobresalga */
+}
+
+.contInicio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/img/FondoIndex.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5; /* Ajusta la opacidad */
+    z-index: -1; /* Coloca la pseudocapa detrás del contenido */
+}
+
+.contInicioHome {
+    position: relative; /* Asegura que los elementos hijos estén encima del fondo */
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.logoInicioHome {
+    display: flex;
+    align-items: center;
+    background-color: var(--colorGrisacio);
+    border-radius: 15px;
+    padding: 0px 25px 0px 0px;
+    border: 1px solid F1F1F1;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.500);
+}
+
+.logoInicioHome img {
+    width: 70px;
+    height: 70px;
+}
+
+.logoInicioHome p {
+    font-weight: 750;
+    font-size: 1.2rem;
+}
+
+.tituloHome {
+    padding: 0px 5vh;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 7vh;
+}
+
+.bi-arrow-down-short {
+    font-size: 5rem;
+    
+    margin-top: 7vh;
+    color: var(--colorPrimario);
+    display: flex;
+    justify-content: center;
+    animation: bounce 1.5s infinite; /* Animación continua */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-20px); /* Inicia un poco más arriba */
+        opacity: 0; /* Comienza invisible */
+    }
+    50% {
+        transform: translateY(0); /* Entra en su posición */
+        opacity: 1; /* Se vuelve visible */
+    }
+    100% {
+        transform: translateY(20px); /* Rebota hacia abajo */
+        opacity: 0; /* Vuelve a desvanecerse */
+    }
+}

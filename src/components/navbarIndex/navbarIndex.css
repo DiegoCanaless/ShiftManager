@@ -11,6 +11,7 @@
     color: white;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
+    z-index: 3;
 }
 
 .bi-moon-fill{
@@ -142,9 +143,9 @@
 
     .logo{
         margin-left: 5vh;
-        background-color: #F1F1F1;
+        background-color: var(--colorGrisacio);
         border-radius: 15px;
-        border: 1px solid F1F1F1;
+        border: 1px solid var(--colorGrisacio);
         box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.158);
     }
 
