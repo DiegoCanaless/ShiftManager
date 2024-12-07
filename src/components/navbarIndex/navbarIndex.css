@@ -1,8 +1,11 @@
 .navbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 10vh;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 100%;
     align-items: center;
     background-color: var(--colorPrimario);
     color: white;
@@ -10,7 +13,158 @@
     border-top-right-radius: 50px;
 }
 
+.bi-moon-fill{
+    font-size: 1.5rem;
+    margin-right: 20vw;
+}
+
+.bi-brightness-low-fill{
+    font-size: 2rem;
+}
+
 .logo{
     display: flex;
     align-items: center;
+}
+
+.logoimg{
+    width: 40px;
+    height: 40px;
+}
+
+.menuIcon{
+    width: 30px;
+    height: 30px;
+}
+
+.navbarExpand{
+    height: 45vh;
+    display: block;
+}
+
+.listaNavBar{
+    display: none;
+    
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+
+.listaNavBar a{
+    display: flex;
+    align-items: flex-end;
+    
+}
+
+.menuCerrarIcon{
+    display: none;
+    width: 30px;
+    height: 30px;
+}
+
+.listaNavBar img{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.modoOscuroContenedor{
+    display: flex;
+    align-items: center;
+}
+
+.cerrarMenuContenedor{
+    display: flex;
+    justify-content: center;
+    margin-left: 45px;
+    margin-top: 10px;
+}
+
+.navPedirTurno{
+    display: block; 
+    text-align: center;
+    justify-self: start;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid white;
+}
+
+
+@media (min-width: 370px){
+    .listaNavBar{
+        gap: 20px;
+    }
+}
+
+@media (min-width: 650px){
+    .listaNavBar{
+        padding-left: 22%;
+    }
+}
+
+@media (min-width: 810px){
+    .navbar{
+        position: static;
+        height: 14vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .menuIcon{
+        display: none;
+    }
+
+    .listaNavBar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .bi-moon-fill{
+        margin-right: 0px;
+    }
+
+    .cerrarMenuContenedor{
+        display: none;
+    }
+
+    .listaNavBar img, .divRaroNavbar{
+        display: none;
+    }
+
+    .logo{
+        margin-left: 5vh;
+        background-color: #F1F1F1;
+        border-radius: 15px;
+        border: 1px solid F1F1F1;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.158);
+    }
+
+    .logo p{
+        width: 120px;
+        color: black;
+        font-weight: 750;
+    }
+
+    .modoOscuroContenedor{
+        justify-self: end;
+    }
+}
+
+
+@media (min-width: 930px){
+
+    .modoOscuroContenedor {
+        margin-left: 10vh;
+        gap: 30px
+        ;
+    }
 }
