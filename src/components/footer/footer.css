@@ -58,12 +58,16 @@
 }
 
 @media (min-width: 433px) {
-    .footer {
-        
-    }
 
     .imagenFooter {
         width: 70px;
+    }
+}
+
+@media (min-width: 810px) {
+    .footer{
+        padding-bottom: 10vh;
+        border: none;
     }
 }
 
@@ -71,7 +75,6 @@
     .footer {
         display: flex;
         padding: 0px;
-        padding-bottom: 25vh;
         flex-direction: column;
         
     }

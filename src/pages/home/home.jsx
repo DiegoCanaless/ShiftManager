@@ -23,6 +23,7 @@ export const home = () => {
 						</div>
 					</div>
 					<h1 className='tituloHome'>¡Reserva tu turno en segundos!</h1>
+					<p className="textoHome">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore facilis, commodi corporis perferendis fugit voluptates doloribus quas molestiae natus tenetur?</p>
 					<i class="bi bi-arrow-down-short"></i>
 				</div>
 				<div className='fondoGradiente'>
@@ -68,7 +69,8 @@ export const home = () => {
 
 					<h2 className="tituloSobreNosotros">Sobre Nosotros</h2>
 					<div className='contSobreNosotros'>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quaerat totam, quis molestias facere dolores id aperiam perferendis officia consequuntur?</p>
+						<p>Loren Insuma es simplemente el texto de relleno de las imprentas y archivos de texto. Loren Insuma ha sido el texto de relleno estándar de las industrias desde el año 1500
+						Loren Insuma ha sido el texto de relleno estándar de las industrias desde el año 1500</p>
 						<img src={imgSobreNosotros} alt="" />
 					</div>
 

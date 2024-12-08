@@ -20,6 +20,10 @@
     overflow: hidden; /* Evita que la pseudocapa sobresalga */
 }
 
+.textoHome{
+    display: none;
+}
+
 .contInicio::before {
     content: "";
     position: absolute;
@@ -142,6 +146,7 @@
     height: 50%;
     margin-top: 5vh;
     border-radius: 15px;
+    filter: brightness(65%)
 }
 
 .textoContactanos{
@@ -200,4 +205,167 @@
 .fondoGradiente{
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 28%, rgba(74,58,208,1) 32%, rgba(74,58,209,1) 100%);
+}
+
+@media (min-width: 356px){
+    .fondoGradiente{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(74,58,208,1) 32%, rgba(74,58,209,1) 100%);
+    }
+}
+
+
+@media (min-width: 364px){
+    .service{
+        height: 120px;
+        width: 120px;
+    }
+
+    .tituloSobreNosotros{
+        font-size: 1.75rem;
+    }
+
+    .fondoGradiente{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 27%, rgba(74,58,208,1) 34%, rgba(74,58,209,1) 100%);
+    }
+}
+
+@media (min-width: 414px){
+    .service{
+        height: 120px;
+        width: 30vw;
+    }
+
+    .contSobreNosotros{
+        padding: 10vw;
+    }
+
+}
+
+@media (min-width: 560px){
+    .service{
+        height: 20vh;
+        width: 35vw;
+    }
+
+    .tituloSobreNosotros{
+        margin-top: 10vh;
+    }
+
+    .fondoGradiente{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 22%, rgba(74,58,208,1) 28%, rgba(74,58,209,1) 100%);
+    }
+    
+}
+
+
+@media (min-width: 600px){
+    .contSobreNosotros img{
+        width: 70%;
+    }
+
+    .contSobreNosotros{
+        padding: 5vw;
+    }
+
+    .contSobreNosotros p{
+        margin-top: 0px;
+        padding: 0px 5vw;
+    }
+}
+
+@media (min-width: 650px){
+    .service{
+        width: 200px;
+    }
+
+    .contenedorServices{
+        gap: 30px;
+    }
+
+    .formularioIndex label{
+        width: 70%;
+    }
+}
+
+@media (min-width: 760px){
+    .fondoGradiente{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(74,58,208,1) 25%, rgba(74,58,209,1) 100%);
+    }
+}
+
+
+@media (min-width: 810px){
+
+    .contInicio{
+        height: 86vh;
+    }
+
+    .logoInicioHome{
+        display: none;
+    }
+
+    .tituloHome{
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 10vh;
+    }
+
+    .textoHome{
+        display: block;
+        text-align: center;
+        margin-top: 4%;
+        padding: 0px 12vh;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 15vh;
+    }
+
+
+    .contSobreNosotros{
+        flex-direction: row;
+    }
+
+    .contSobreNosotros img{
+        width: 40%;
+        margin-top: 0px;
+    }
+
+    .contSobreNosotros p{
+        padding: 0px 10vh;
+        font-size: 1.1rem;
+        line-height: 35px;
+    }
+
+    .formularioIndex textarea{
+        height: 200px;
+    }
+
+    .fondoGradiente{
+        background: rgb(255,255,255);
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 23%, rgba(74,58,208,1) 30%, rgba(74,58,209,1) 100%);
+    }
+
+    .service{
+        height: 130px;
+    }
+
+    .contInicio::before{
+        background-image: url(../../assets/img/FondoIndexDesktop.jpg);
+    }
+}
+
+@media (min-width: 945px){
+    .contenedorServices{
+        padding: 0px 15vw;
+    }
+}
+
+@media (min-width: 1100px){
+    .contenedorServices{
+        padding: 0px 20%;
+    }
 }

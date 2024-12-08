@@ -102,7 +102,11 @@
 
 @media (min-width: 650px){
     .listaNavBar{
-        padding-left: 22%;
+        padding-left: 10%;
+    }
+
+    .logo p{
+        font-size: 1.1rem;
     }
 }
 
@@ -150,7 +154,7 @@
     }
 
     .logo p{
-        width: 120px;
+        width: 130px;
         color: black;
         font-weight: 750;
     }
