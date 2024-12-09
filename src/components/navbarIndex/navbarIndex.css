@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -14,38 +14,70 @@
     z-index: 3;
 }
 
-.bi-moon-fill{
+.linksNavbar{
+    position: relative; /* Necesario para el pseudo-elemento */
+    color: white;
+    text-decoration: none; /* Sin subrayado predeterminado */
+    transition: color 0.5s; /* Transición para el color del texto */
+}
+
+.linksNavbar::after {
+    content: ""; /* Pseudo-elemento vacío */
+    position: absolute;
+    left: 0;
+    bottom: -3px; /* Línea justo debajo del texto */
+    width: 0; /* Ancho inicial */
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color del subrayado */
+    transition: width 0.5s ease; /* Animación del ancho */
+}
+
+.linksNavbar:hover {
+    color: white;
+}
+
+.linksNavbar:hover::after {
+    width: 100%;
+}
+
+/* Estilo adicional para Pedir Turno si es necesario */
+.navPedirTurno:hover {
+    background-color: white; /* Ejemplo: cambiar fondo al hacer hover */
+    color: var(--colorPrimario); /* Cambiar color del texto */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.bi-moon-fill {
     font-size: 1.5rem;
     margin-right: 20vw;
 }
 
-.bi-brightness-low-fill{
+.bi-brightness-low-fill {
     font-size: 2rem;
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
 }
 
-.logoimg{
+.logoimg {
     width: 40px;
     height: 40px;
 }
 
-.menuIcon{
+.menuIcon {
     width: 30px;
     height: 30px;
 }
 
-.navbarExpand{
+.navbarExpand {
     height: 45vh;
     display: block;
 }
 
-.listaNavBar{
+.listaNavBar {
     display: none;
-    
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto);
     gap: 20px;
@@ -53,65 +85,95 @@
     padding: 20px;
 }
 
-
-.listaNavBar a{
+.listaNavBar a {
     display: flex;
     align-items: flex-end;
-    
 }
 
-.menuCerrarIcon{
+.menuCerrarIcon {
     display: none;
     width: 30px;
     height: 30px;
 }
 
-.listaNavBar img{
+.listaNavBar img {
     width: 30px;
     height: 30px;
     margin-right: 5px;
 }
 
-.modoOscuroContenedor{
+.modoOscuroContenedor {
     display: flex;
     align-items: center;
 }
 
-.cerrarMenuContenedor{
+.cerrarMenuContenedor {
     display: flex;
     justify-content: center;
     margin-left: 45px;
     margin-top: 10px;
 }
 
-.navPedirTurno{
+.navPedirTurno {
     display: block; 
     text-align: center;
     justify-self: start;
     padding: 10px 20px;
     border-radius: 15px;
     border: 1px solid white;
+    transition: all 0.3s ease;
+}
+
+.buttonModoOscuroOn{
+    background: none;
+    border: none;
+    color: #6C757D;
+}
+
+.buttonModoOscuroOn,
+.buttonModoOscuroOff {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.buttonModoOscuroOn {
+  color: #6C757D; /* Gris por defecto */
+}
+
+.buttonModoOscuroOn.active {
+  color: #C0C0C0; /* Amarillo si está activo */
+}
+
+.buttonModoOscuroOff {
+  color: #6C757D; /* Gris por defecto */
+}
+
+.buttonModoOscuroOff.active {
+  color: #FFC107; /* Amarillo si está activo */
 }
 
 
-@media (min-width: 370px){
-    .listaNavBar{
+@media (min-width: 370px) {
+    .listaNavBar {
         gap: 20px;
     }
 }
 
-@media (min-width: 650px){
-    .listaNavBar{
+@media (min-width: 650px) {
+    .listaNavBar {
         padding-left: 10%;
     }
 
-    .logo p{
+    .logo p {
         font-size: 1.1rem;
     }
 }
 
-@media (min-width: 810px){
-    .navbar{
+@media (min-width: 810px) {
+    .navbar {
         position: static;
         height: 14vh;
         width: 100%;
@@ -122,30 +184,31 @@
         border-top-right-radius: 0px;
     }
 
-    .menuIcon{
+    .menuIcon {
         display: none;
     }
 
-    .listaNavBar{
+    .listaNavBar {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0px;
+        gap: 30px;
     }
 
-    .bi-moon-fill{
+    .bi-moon-fill {
         margin-right: 0px;
     }
 
-    .cerrarMenuContenedor{
+    .cerrarMenuContenedor {
         display: none;
     }
 
-    .listaNavBar img, .divRaroNavbar{
+    .listaNavBar img, .divRaroNavbar {
         display: none;
     }
 
-    .logo{
+    .logo {
         margin-left: 5vh;
         background-color: var(--colorGrisacio);
         border-radius: 15px;
@@ -153,23 +216,20 @@
         box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.158);
     }
 
-    .logo p{
+    .logo p {
         width: 130px;
         color: black;
         font-weight: 750;
     }
 
-    .modoOscuroContenedor{
+    .modoOscuroContenedor {
         justify-self: end;
     }
 }
 
-
-@media (min-width: 930px){
-
+@media (min-width: 930px) {
     .modoOscuroContenedor {
         margin-left: 10vh;
-        gap: 30px
-        ;
+        gap: 30px;
     }
 }

@@ -9,11 +9,9 @@ import iconcerrarMenu from "../../assets/svg/cerrarMenu.svg";
 
 import { useState } from 'react';
 
-
-
-export const navbarIndex = () => {
-
+const NavbarIndex = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [modoOscuro, setModoOscuro] = useState(true); // Estado para el modo oscuro
 
   const abrirMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -44,36 +42,52 @@ export const navbarIndex = () => {
 
   }
 
+  const cambiarModo = () => {
+    setModoOscuro(!modoOscuro);
+  };
 
   return (
-    <>
-      <div className='navbar' id='navbar'>
-        <div className='logo'>
-          <img src={logo} alt="" className='logoimg' id="navbarLogo" />      
-          <p id="nombreLogo">Shift Manager</p>
-        </div>
-        <div className='listaNavBar' id='listaNavBar'>
-          <a><img src={iconHome} alt=""/><p>Home</p></a>
-          <a><img src={iconService} alt=""/><p>Servicios</p></a>
-          <a><img src={iconInfo} alt=""/><p>Sobre Nosotros</p></a>
-          <a><img src={iconContactanos} alt=""/><p>Contactanos</p></a>
-          <a className='navPedirTurno'>Pedir Turno</a>
-          <div className='modoOscuroContenedor'>
+    <div className='navbar' id='navbar'>
+      <div className='logo'>
+        <img src={logo} alt="" className='logoimg' id="navbarLogo" />
+        <p id="nombreLogo">Shift Manager</p>
+      </div>
+      <img src={iconMenu} className='menuIcon' alt="" onClick={abrirMenu} id='menuIcon' />
+      <div className='listaNavBar' id='listaNavBar'>
+        <a href='' className='linksNavbar'>
+          <img src={iconHome} alt="" /><p>Home</p>
+        </a>
+        <a href='' className='linksNavbar'>
+          <img src={iconService} alt="" /><p>Servicios</p>
+        </a>
+        <a href='' className='linksNavbar'>
+          <img src={iconInfo} alt="" /><p>Sobre Nosotros</p>
+        </a>
+        <a href='' className='linksNavbar'>
+          <img src={iconContactanos} alt="" /><p>Contactanos</p>
+        </a>
+        <a className='navPedirTurno'>Pedir Turno</a>
+        <div className='modoOscuroContenedor'>
+          <button
+            className={`buttonModoOscuroOn ${modoOscuro ? 'active' : ''}`}
+            onClick={cambiarModo}
+          >
             <i className="bi bi-moon-fill"></i>
+          </button>
+          <button
+            className={`buttonModoOscuroOff ${!modoOscuro ? 'active' : ''}`}
+            onClick={cambiarModo}
+          >
             <i className="bi bi-brightness-low-fill"></i>
-          </div>
-          <div className='divRaroNavbar'></div>
-          <div className='cerrarMenuContenedor'>
+          </button>
+        </div>
+        <div className='divRaroNavbar'></div>
+        <div className='cerrarMenuContenedor'>
             <img src={iconcerrarMenu} className='menuCerrarIcon' alt="" onClick={abrirMenu} id='cerrarMenuIcon' />
           </div>
-          
-        </div>
-        
-        
-        <img src={iconMenu} className='menuIcon' alt="" onClick={abrirMenu} id='menuIcon' />
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default navbarIndex
+export default NavbarIndex;

@@ -80,7 +80,7 @@
     color: var(--colorPrimario);
     display: flex;
     justify-content: center;
-    animation: bounce 2.5s infinite; /* Animación continua */
+    animation: bounce 1.5s infinite; /* Animación continua */
 }
 
 .tituloService{
@@ -98,6 +98,7 @@
 
 }
 
+
 .service{
     width: 100px;
     height: 100px;
@@ -107,6 +108,7 @@
     flex-direction: column;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+    transition-duration: 0.2s;
 }
 
 .service img{
@@ -139,6 +141,7 @@
     text-align: center;
     margin-top: 2.5vh;
     color: white;
+
 }
 
 .contSobreNosotros img{
@@ -206,6 +209,17 @@
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 28%, rgba(74,58,208,1) 32%, rgba(74,58,209,1) 100%);
 }
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  /* Esto es opcional: para asegurar que la transición sea suave al mostrar el elemento */
+  .animate__animated {
+    transition: opacity 1s ease-in-out;
+  }
+  
 
 @media (min-width: 356px){
     .fondoGradiente{
@@ -300,6 +314,11 @@
 
 @media (min-width: 810px){
 
+    .service:hover{
+        height: 140px;
+        width: 210px;
+    }
+
     .contInicio{
         height: 86vh;
     }
@@ -367,5 +386,10 @@
 @media (min-width: 1100px){
     .contenedorServices{
         padding: 0px 20%;
+    }
+
+    .contSobreNosotros img {
+        width: 30%;
+        margin-right: 15vh;
     }
 }
