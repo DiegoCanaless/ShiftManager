@@ -109,11 +109,11 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-    padding: 0px; /* Añadimos padding para evitar que el contenido se recorte */
+    padding: 0px;
 }
 
 .contenido-modal-registro {
-    position: relative; /* Asegura que el botón de cierre se posicione relativo a este contenedor */
+    position: relative;
     width: 100%;
     max-width: 400px;
     background-color: #ffffff;
@@ -171,16 +171,16 @@
     margin-top: 20px;
 }
 
-.formulario-registro input {
+.input-registro {
     height: 40px;
     outline: none;
     border: 1px solid #cccccc;
     padding: 10px;
     font-size: 15px;
-    border-radius: 8px;
+    border-radius: 40px;
 }
 
-.formulario-registro input[type="submit"] {
+.input-registro[type="submit"] {
     background-color: rgba(17, 17, 226, 0.562);
     color: #ffffff;
     font-size: 17px;
@@ -198,4 +198,22 @@
     text-decoration: none;
     color: rgba(36, 36, 207, 0.671);
     font-weight: 500;
+}
+
+.modal::-webkit-scrollbar {
+    width: 12px;
+}
+
+.modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
