@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import logoGoogle from '../../assets/svg/logoGoogle.svg'
-import Navbar from '../../components/navbarIndex/navbarIndex.jsx';
-import Footer from '../../components/footer/footer.jsx';
+import NavbarSimple from '../../components/navbarsimple/navbarSimple';
 import './login.css'
 
 const login = () => {
@@ -17,7 +16,7 @@ const login = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarSimple />
       <div className='contenedor-login'>
         <h1 className='titulo-login'>INICIÁ SESIÓN</h1>
         <form className='formulario-login' action="#">
@@ -27,7 +26,7 @@ const login = () => {
           <div className='contenedor-botones-login'>
             <button className='boton-login'>INICIAR SESIÓN</button>
             <button className='boton-login-google' onClick={(e) => e.preventDefault()}>
-              INICIAR SESIÓN CON GOOGLE
+              GOOGLE
               <img src={logoGoogle} alt="Google logo" className='logo-google' />
             </button>
             <button className='boton-login-registrar' onClick={(e) => { e.preventDefault(); openModal(); }}>
@@ -86,7 +85,9 @@ const login = () => {
           </div>
         </div>
       )}
-      <Footer />
+      <footer className='footer-simple'>
+        <p>© 2024 Shift Manager System. All rights reserved.</p>
+      </footer>
     </>
   )
 }
