@@ -49,18 +49,30 @@ const login = () => {
             </div>
             {/* No se que esto de FORM ACTION="#" */}
             <form className='formulario-registro' action="#">
-              <h3>Nombre:</h3>
-              <input className='input-registro' type="text" placeholder="Ingresá tu nombre" required />
-              <h3>Apellido:</h3>
-              <input className='input-registro' type="text" placeholder="Ingresá tu apellido" required />
-              <h3>Fecha de nacimiento:</h3>
-              <input className='input-registro' type="date" placeholder="Fecha de nacimiento" required />
-              <h3>Correo electrónico:</h3>
-              <input className='input-registro' type="email" placeholder="ejemplo@ejemplo.com" required />
-              <h3>Contraseña:</h3>
-              <input className='input-registro' type="password" placeholder="Ingresá una contraseña segura" required />
-              <h3>Repetir contraseña:</h3>
-              <input className='input-registro' type="password" placeholder="Repetí la contraseña" required />
+              <div className='campo-registro'>
+                <h3>Nombre:</h3>
+                <input className='input-registro' type="text" placeholder="Ingresá tu nombre" required />
+              </div>
+              <div className='campo-registro'>
+                <h3>Apellido:</h3>
+                <input className='input-registro' type="text" placeholder="Ingresá tu apellido" required />
+              </div>
+              <div className='campo-registro'>
+                <h3>Fecha de nacimiento:</h3>
+                <input className='input-registro' type="date" placeholder="Fecha de nacimiento" required />
+              </div>
+              <div className='campo-registro'>
+                <h3>Correo electrónico:</h3>
+                <input className='input-registro' type="email" placeholder="ejemplo@ejemplo.com" required />
+              </div>
+              <div className='campo-registro'>
+                <h3>Contraseña:</h3>
+                <input className='input-registro' type="password" placeholder="Ingresá una contraseña segura" required />
+              </div>
+              <div className='campo-registro'>
+                <h3>Repetir contraseña:</h3>
+                <input className='input-registro' type="password" placeholder="Repetí la contraseña" required />
+              </div>
 
               <div className='contenedor-botones-login'>
                 <button className='boton-login-google' onClick={(e) => e.preventDefault()}>

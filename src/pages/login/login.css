@@ -167,8 +167,14 @@
 .formulario-registro {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
     margin-top: 20px;
+}
+
+.campo-registro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .input-registro {
@@ -216,4 +222,32 @@
 
 .modal::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media (min-width:810px) {
+
+    .titulo-login {
+        font-size: 2.5rem;
+    }
+
+    .input-login {
+        width: 330px;
+    }
+
+    .boton-login {
+        width: 270px;
+    }
+
+    .boton-login-google {
+        width: 270px;
+    }
+    
+    .boton-login-registrar {
+        width: 270px;
+    }
+    
+    .contenido-modal-registro {
+        max-width: 600px;
+        padding: 30px
+    }
 }
