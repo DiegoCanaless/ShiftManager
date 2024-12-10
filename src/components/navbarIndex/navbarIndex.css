@@ -62,8 +62,13 @@
 }
 
 .logoimg {
-    width: 40px;
-    height: 40px;
+    background-image: url(../../assets/img/logoblanco.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
 }
 
 .menuIcon {
@@ -182,6 +187,10 @@
         align-items: center;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
+    }
+
+    .logoimg{
+        background-image: url(../../assets/img/logopngtalvez.png);
     }
 
     .menuIcon {

@@ -51,14 +51,14 @@
     align-items: center;
     background-color: var(--colorGrisacio);
     border-radius: 15px;
-    padding: 0px 25px 0px 0px;
+    padding: 5px 10px;
     border: 1px solid F1F1F1;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
 }
 
 .logoInicioHome img {
-    width: 70px;
-    height: 70px;
+    width: 40px;
+    height: 40px;
 }
 
 .logoInicioHome p {
