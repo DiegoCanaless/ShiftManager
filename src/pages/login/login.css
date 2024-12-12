@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f1f1f1;
+    background-color: var(--colorGrisacio);
     gap: 30px;
 }
 
@@ -26,7 +26,7 @@
     width: 270px;
     height: 40px;
     background-color: #fff;
-    border: 1px solid #979797;
+    border: 1px solid var(--colorBordeInput);
     border-radius: 40px;
     padding-left: 20px;
     font-size: 90%;
@@ -48,7 +48,7 @@
     
     width: 235px;
     height: 35px;
-    background-color: #421EB7;
+    background-color: var(--colorPrimario);
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -64,7 +64,7 @@
 
     width: 235px;
     height: 35px;
-    background-color: #8E94F2;
+    background-color: var(--colorPrimarioSuave);
     color: #fff;
     border: none;
     border-radius: 40px;
@@ -89,8 +89,8 @@
     width: 235px;
     height: 35px;
     background-color: #fff;
-    color: #421EB7;
-    border: 1px solid #421EB7;
+    color: var(--colorPrimario);
+    border: 1px solid var(--colorPrimario);
     border-radius: 40px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -136,7 +136,7 @@
 
 .close-modal-registro:hover,
 .close-modal-registro:focus {
-    color: #421EB7;
+    color: var(--colorPrimario);
     text-decoration: none;
 }
 
@@ -155,7 +155,7 @@
     text-align: center;
     font-size: 15px;
     font-weight: 400;
-    color: #706b6b;
+    color: #6b706b;
 }
 
 .formulario-registro h3 {
