@@ -1,7 +1,9 @@
 :root{
   --colorPrimario: #4A3AD1;
+  --colorPrimarioSuave: #8E94F2;
   --colorGrisacio: #F1F1F1;
   --colorFormulario: #352525;
+  --colorBordeInput: #979797;
 }
 
 *{
