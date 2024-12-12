@@ -1,5 +1,5 @@
 import './navbarIndex.css';
-import logo from "../../assets/logopngtalvez.png";
+import logo from "../../assets/img/logoblanco.png";
 import iconMenu from "../../assets/svg/menu.svg";
 import iconHome from "../../assets/svg/home.svg";
 import iconService from "../../assets/svg/services.svg";
@@ -49,7 +49,7 @@ const NavbarIndex = () => {
   return (
     <div className='navbar' id='navbar'>
       <div className='logo'>
-        <img src={logo} alt="" className='logoimg' id="navbarLogo" />
+        <div className='logoimg' id="navbarLogo"></div> 
         <p id="nombreLogo">Shift Manager</p>
       </div>
       <img src={iconMenu} className='menuIcon' alt="" onClick={abrirMenu} id='menuIcon' />

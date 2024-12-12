@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../../components/navbarIndex/navbarIndex.jsx';
 import Footer from '../../components/footer/footer.jsx';
-import logo from "../../assets/logopngtalvez.png";
+import logo from "../../assets/img/logopngtalvez.png";
 import iconClinic from "../../assets/svg/clinic.svg";
 import iconPresentacion from "../../assets/svg/presentaciones.svg";
 import iconClase from "../../assets/svg/clases.svg";
