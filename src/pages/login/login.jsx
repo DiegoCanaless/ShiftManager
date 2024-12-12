@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logoGoogle from '../../assets/svg/logoGoogle.svg'
 import NavbarSimple from '../../components/navbarsimple/navbarSimple';
+import Boton from '../../components/boton/boton';
 import './login.css'
 
 const login = () => {
@@ -24,14 +25,11 @@ const login = () => {
           <input className='input-login' type="password" placeholder="Ingresá tu contraseña" required/>
 
           <div className='contenedor-botones-login'>
-            <button className='boton-login'>INICIAR SESIÓN</button>
-            <button className='boton-login-google' onClick={(e) => e.preventDefault()}>
-              GOOGLE
+            <Boton text="INICIAR SESIÓN" className="boton-a" />
+            <Boton text="GOOGLE" className="boton-b" onClick={(e) => e.preventDefault()}>
               <img src={logoGoogle} alt="Google logo" className='logo-google' />
-            </button>
-            <button className='boton-login-registrar' onClick={(e) => { e.preventDefault(); openModal(); }}>
-              REGISTRATE
-            </button>
+            </Boton>
+            <Boton text="REGISTRATE" className="boton-c" onClick={(e) => { e.preventDefault(); openModal(); }} />
           </div>
         </form>
         
@@ -44,7 +42,7 @@ const login = () => {
             <span className='close-modal-registro' onClick={closeModal}>&times;</span>
             <div className="cabecera-modal-registro">
               <h2>Formulario de registro</h2>
-              <p>Blablablablablablabla.</p>
+              <p>Llena todos los campos para registrarte en la plataforma.</p>
             </div>
             {/* No se que esto de FORM ACTION="#" */}
             <form className='formulario-registro' action="#">
@@ -74,11 +72,10 @@ const login = () => {
               </div>
 
               <div className='contenedor-botones-login'>
-                <button className='boton-login-google' onClick={(e) => e.preventDefault()}>
-                  REGISTRARSE CON GOOGLE
+                <Boton text="REGISTRARSE CON GOOGLE" className="boton-b" onClick={(e) => e.preventDefault()}>
                   <img src={logoGoogle} alt="Google logo" className='logo-google' />
-                </button>
-                <button className='boton-login'>REGISTRARSE</button>
+                </Boton>
+                <Boton text="REGISTRARSE" className="boton-a" />
               </div>
               <span> Ya tenés una cuenta? <a href="#" onClick={closeModal}>Iniciá sesión</a></span>
             </form>

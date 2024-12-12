@@ -41,60 +41,12 @@
 
 }
 
-.boton-login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    width: 235px;
-    height: 35px;
-    background-color: var(--colorPrimario);
-    color: #fff;
-    border: none;
-    border-radius: 40px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.boton-login-google {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 235px;
-    height: 35px;
-    background-color: var(--colorPrimarioSuave);
-    color: #fff;
-    border: none;
-    border-radius: 40px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    cursor: pointer;
-}
-
 .logo-google {
     width: 15px;
     height: 15px;
     margin-left: 7px;
     display: inline-block;
     vertical-align: middle;
-}
-
-.boton-login-registrar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 235px;
-    height: 35px;
-    background-color: #fff;
-    color: var(--colorPrimario);
-    border: 1px solid var(--colorPrimario);
-    border-radius: 40px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .modal-registro {
@@ -226,15 +178,15 @@
         font-size: 1rem;
     }
 
-    .boton-login {
+    .boton-a {
         width: 270px;
     }
 
-    .boton-login-google {
+    .boton-b {
         width: 270px;
     }
     
-    .boton-login-registrar {
+    .boton-c {
         width: 270px;
     }
     
