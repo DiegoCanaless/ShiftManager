@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../../assets/logopngtalvez.png";
+import logo from "../../assets/img/logoblanco.png";
 import './navbarSimple.css'
 import volver from "../../assets/svg/volver.svg";
 
