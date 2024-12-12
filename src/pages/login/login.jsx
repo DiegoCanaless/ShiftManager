@@ -25,11 +25,11 @@ const login = () => {
           <input className='input-login' type="password" placeholder="Ingresá tu contraseña" required/>
 
           <div className='contenedor-botones-login'>
-            <Boton text="INICIAR SESIÓN" className="boton-a" />
-            <Boton text="GOOGLE" className="boton-b" onClick={(e) => e.preventDefault()}>
+            <Boton text="INICIAR SESIÓN" className="boton-violeta" />
+            <Boton text="GOOGLE" className="boton-violeta-suave" onClick={(e) => e.preventDefault()}>
               <img src={logoGoogle} alt="Google logo" className='logo-google' />
             </Boton>
-            <Boton text="REGISTRATE" className="boton-c" onClick={(e) => { e.preventDefault(); openModal(); }} />
+            <Boton text="REGISTRATE" className="boton-blanco" onClick={(e) => { e.preventDefault(); openModal(); }} />
           </div>
         </form>
         
@@ -72,10 +72,10 @@ const login = () => {
               </div>
 
               <div className='contenedor-botones-login'>
-                <Boton text="REGISTRARSE CON GOOGLE" className="boton-b" onClick={(e) => e.preventDefault()}>
+                <Boton text="REGISTRARSE CON GOOGLE" className="boton-violeta-suave" onClick={(e) => e.preventDefault()}>
                   <img src={logoGoogle} alt="Google logo" className='logo-google' />
                 </Boton>
-                <Boton text="REGISTRARSE" className="boton-a" />
+                <Boton text="REGISTRARSE" className="boton-violeta" />
               </div>
               <span> Ya tenés una cuenta? <a href="#" onClick={closeModal}>Iniciá sesión</a></span>
             </form>

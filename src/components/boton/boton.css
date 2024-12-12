@@ -10,19 +10,19 @@
   cursor: pointer;
 }
 
-.boton-a {
+.boton-violeta {
   background-color: var(--colorPrimario);
   color: #fff;
   border: none;
 }
 
-.boton-b {
+.boton-violeta-suave {
   background-color: var(--colorPrimarioSuave);
   color: #fff;
   border: none;
 }
 
-.boton-c{
+.boton-blanco{
   background-color: #fff;
   color: var(--colorPrimario);
   border: 1px solid var(--colorPrimario);
