@@ -1,7 +1,7 @@
 import React from 'react'
-import './input.css'
+import './Input.css'
 
-const input = ({type, placeholder, className, ...props}) => {
+const Input = ({type, placeholder, className, ...props}) => {
   return (
     <input
       type={type}
@@ -12,4 +12,4 @@ const input = ({type, placeholder, className, ...props}) => {
   );
 }
 
-export default input;
+export default Input;

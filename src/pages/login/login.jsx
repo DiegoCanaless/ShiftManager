@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import logoGoogle from '../../assets/svg/logoGoogle.svg'
 import NavbarSimple from '../../components/navbarsimple/navbarSimple';
 import Boton from '../../components/boton/boton';
-import Input from '../../components/input/input';
-import './login.css'
+import Input from '../../components/input/Input';
+import './Login.css'
 
 const login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)

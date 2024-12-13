@@ -1,7 +1,7 @@
 import React from 'react'
-import './boton.css'
+import './Boton.css'
 
-const boton = ({text, onClick, className, children}) => {
+const Boton = ({text, onClick, className, children}) => {
   return (
     <button className={`boton ${className}`} onClick={onClick}>
       {text}
@@ -10,4 +10,4 @@ const boton = ({text, onClick, className, children}) => {
   );
 }
 
-export default boton;
+export default Boton;
