@@ -22,15 +22,7 @@
     width: 300px;
 }
 
-.input-login {
-    width: 270px;
-    height: 40px;
-    background-color: #fff;
-    border: 1px solid var(--colorBordeInput);
-    border-radius: 40px;
-    padding-left: 20px;
-    font-size: 90%;
-}
+
 
 .contenedor-botones-login {
     display: flex;
@@ -127,22 +119,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.input-registro {
-    height: 40px;
-    outline: none;
-    border: 1px solid #cccccc;
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 40px;
-}
-
-.input-registro[type="submit"] {
-    background-color: rgba(17, 17, 226, 0.562);
-    color: #ffffff;
-    font-size: 17px;
-    cursor: pointer;
 }
 
 .formulario-registro span {

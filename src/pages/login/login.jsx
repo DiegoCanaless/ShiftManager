@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logoGoogle from '../../assets/svg/logoGoogle.svg'
 import NavbarSimple from '../../components/navbarsimple/navbarSimple';
 import Boton from '../../components/boton/boton';
+import Input from '../../components/input/input';
 import './login.css'
 
 const login = () => {
@@ -21,8 +22,8 @@ const login = () => {
       <div className='contenedor-login'>
         <h1 className='titulo-login'>INICIÁ SESIÓN</h1>
         <form className='formulario-login' action="#">
-          <input className='input-login' type="email" placeholder="Ingresá tu email" required/>
-          <input className='input-login' type="password" placeholder="Ingresá tu contraseña" required/>
+          <Input className='input-login' type="email" placeholder="Ingresá tu email" required />
+          <Input className='input-login' type="password" placeholder="Ingresá tu contraseña" required />
 
           <div className='contenedor-botones-login'>
             <Boton text="INICIAR SESIÓN" className="boton-violeta" />
@@ -48,27 +49,27 @@ const login = () => {
             <form className='formulario-registro' action="#">
               <div className='campo-registro'>
                 <h3>Nombre:</h3>
-                <input className='input-registro' type="text" placeholder="Ingresá tu nombre" required />
+                <Input className='input-registro' type="text" placeholder="Ingresá tu nombre" required />
               </div>
               <div className='campo-registro'>
                 <h3>Apellido:</h3>
-                <input className='input-registro' type="text" placeholder="Ingresá tu apellido" required />
+                <Input className='input-registro' type="text" placeholder="Ingresá tu apellido" required />
               </div>
               <div className='campo-registro'>
                 <h3>Fecha de nacimiento:</h3>
-                <input className='input-registro' type="date" placeholder="Fecha de nacimiento" required />
+                <Input className='input-registro' type="date" placeholder="Fecha de nacimiento" required />
               </div>
               <div className='campo-registro'>
                 <h3>Correo electrónico:</h3>
-                <input className='input-registro' type="email" placeholder="ejemplo@ejemplo.com" required />
+                <Input className='input-registro' type="email" placeholder="ejemplo@ejemplo.com" required />
               </div>
               <div className='campo-registro'>
                 <h3>Contraseña:</h3>
-                <input className='input-registro' type="password" placeholder="Ingresá una contraseña segura" required />
+                <Input className='input-registro' type="password" placeholder="Ingresá una contraseña segura" required />
               </div>
               <div className='campo-registro'>
                 <h3>Repetir contraseña:</h3>
-                <input className='input-registro' type="password" placeholder="Repetí la contraseña" required />
+                <Input className='input-registro' type="password" placeholder="Repetí la contraseña" required />
               </div>
 
               <div className='contenedor-botones-login'>

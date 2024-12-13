@@ -1,4 +1,5 @@
 import React from 'react'
+import './input.css'
 
 const input = ({type, placeholder, className, ...props}) => {
   return (
