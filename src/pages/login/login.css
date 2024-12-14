@@ -143,6 +143,14 @@
     font-size: 0.8rem;
 }
 
+.logo-google {
+  width: 15px;
+  height: 15px;
+  margin-left: 7px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 @media (min-width:810px) {
 
     .titulo-login {

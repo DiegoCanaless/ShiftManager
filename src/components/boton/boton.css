@@ -27,11 +27,3 @@
   color: var(--colorPrimario);
   border: 1px solid var(--colorPrimario);
 }
-
-.logo-google {
-  width: 15px;
-  height: 15px;
-  margin-left: 7px;
-  display: inline-block;
-  vertical-align: middle;
-}
