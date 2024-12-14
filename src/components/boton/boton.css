@@ -8,6 +8,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .boton-violeta {
@@ -16,14 +17,32 @@
   border: none;
 }
 
+.boton-violeta:hover {
+  background-color: #fff;
+  color: var(--colorPrimario);
+  border: 1px solid var(--colorPrimario);
+}
+
 .boton-violeta-suave {
   background-color: var(--colorPrimarioSuave);
   color: #fff;
   border: none;
 }
 
+.boton-violeta-suave:hover {
+  background-color: #fff;
+  color: var(--colorPrimario);
+  border: 1px solid var(--colorPrimario);
+}
+
 .boton-blanco{
   background-color: #fff;
   color: var(--colorPrimario);
   border: 1px solid var(--colorPrimario);
+}
+
+.boton-blanco:hover{
+  background-color: var(--colorPrimario);
+  color: #fff;
+  border: none;
 }
