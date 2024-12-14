@@ -1,6 +1,6 @@
 .contenedor-servicio {
     width: 100%;
-    max-width: 430px;
+    max-width: 400px;
     margin: 0 auto;
     border-radius: 30px;
     overflow: hidden;
@@ -30,7 +30,7 @@
   }
   
   .contenedor-botones button {
-    background-color: var(--colorPrimarioSuave);
+    background-color: var(--colorGrisacio);
     color: black;
     border: none;
     border-radius: 20px;
@@ -39,11 +39,13 @@
     font-size: 1em;
     font-weight: 600;
     transition: background-color 0.3s, color 0.3s;
+    border: 1px solid white;
   }
   
   .contenedor-botones button:hover {
-    background-color: #ffffff;
+    background-color: #fff;
     color: black;
+    background-color: var(--colorPrimarioSuave);
   }
   
   .contenedor-botones button:first-child {
