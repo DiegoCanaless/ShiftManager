@@ -12,6 +12,11 @@ import IconoBoxeo from "../../assets/svg/boxeo.svg";
 import Checkbox from "../../components/checkbox/Checkbox";
 import IconoCalendario from "../../assets/svg/calendario.svg";
 import IconoEliminar from "../../assets/svg/eliminar.svg";
+import IconoCancha from "../../assets/svg/cancha.svg";
+import IconoClases from "../../assets/svg/clases.svg";
+import IconoClinic from "../../assets/svg/clinic.svg";
+import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
+import IconoPsicologo from "../../assets/svg/psicologo.svg";
 
 const Admin = () => {
   const [mostrarTodos, setMostrarTodos] = useState(false);
