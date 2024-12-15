@@ -33,14 +33,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
   width: 100%;
   max-width: 500px;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
+.label-formulario-servicio {
+  width: 150px; /* Ajusta este valor según sea necesario */
+  text-align: left;
+  margin-right: 10px;
+}
+
 .input-formulario-servicio {
-  width: 100%;
+  flex: 1;
   padding: 10px;
 }
 
@@ -58,7 +64,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin-bottom: 20px;
 }
 

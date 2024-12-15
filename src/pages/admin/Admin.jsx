@@ -131,7 +131,7 @@ const Admin = () => {
         <div className="formulario-servicio">
           <form action="#" className="formulario-detalles-servicio">
             <div className='campo-formulario-servicio'>
-              <h3>Nombre:</h3>
+              <label className='label-formulario-servicio'><h3>Nombre:</h3></label>
               <Input
                 className='input-formulario-servicio'
                 type="text"
@@ -142,7 +142,7 @@ const Admin = () => {
             </div>
 
             <div className='campo-formulario-servicio'>
-              <h3>Descripción:</h3>
+              <label className='label-formulario-servicio'><h3>Descripción:</h3></label>
               <Input
                 className='input-formulario-servicio'
                 type="text"
@@ -153,7 +153,7 @@ const Admin = () => {
             </div>
 
             <div className='campo-formulario-servicio'>
-              <h3>Modalidad:</h3>
+              <label className='label-formulario-servicio'><h3>Modalidad:</h3></label>
               <div className="formulario-servicio-modalidad">
                 <Checkbox
                   id="presencial"
@@ -175,7 +175,7 @@ const Admin = () => {
             {/* Dependiendo de la modalidad elegida, se muestra o no el campo Dirección */}
             {modalidad === "presencial" && (
               <div className='campo-formulario-servicio'>
-                <h3>Dirección:</h3>
+                <label className='label-formulario-servicio'>Dirección:</label>
                 <Input
                   className='input-formulario-servicio'
                   type="text"
@@ -187,7 +187,7 @@ const Admin = () => {
             )}
 
             <div className='campo-formulario-servicio'>
-              <h3>Administrar fechas:</h3>
+              <label className='label-formulario-servicio'><h3>Administrar fechas:</h3></label>
               <img
                 src={IconoCalendario}
                 alt="Calendario"
