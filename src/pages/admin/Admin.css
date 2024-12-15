@@ -1,0 +1,57 @@
+.contenedor-admin {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--colorGrisacio);
+}
+.contenedor-servicios-admin {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+  
+  /* Desplegable de servicios */
+.desplegable-servicios-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 0;
+}
+  
+.desplegable-servicios-admin h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.grid-servicios-admin {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  margin-top: 10px;
+}
+  
+.flecha-admin {
+  width: 20px;
+  height: 20px;
+}
+
+.icono-boxeo {
+  width: 40px;
+  height: 40px;
+}
+
+.icono-calendario {
+  width: 25px;
+  height: 25px;
+}
+
+.footer-simple {
+  background-color: var(--colorPrimario);
+  color: #fff;
+  padding-left: 5px;
+}
+.footer-simple p {
+  font-size: 0.8rem;
+}
+  
