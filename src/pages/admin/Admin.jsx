@@ -107,7 +107,7 @@ const Admin = () => {
           {/* Encabezado desplegable */}
           <div className="desplegable-servicios-admin" onClick={toggleServicios}>
             <h2>Servicios</h2>
-            <img src={mostrarTodos ? FlechaArriba : FlechaAbajo} alt="Flecha" className="flecha-admin" />
+            <img src={mostrarTodos ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
           </div>
 
           <div className="grid-servicios-admin">
@@ -225,7 +225,7 @@ const Admin = () => {
             <div className="campo-fechas-servicio">
               <div className="desplegable-fechas-admin" onClick={toggleFechas}>
                 <h3>Administrar horarios</h3>
-                <img src={mostrarFechas ? FlechaArriba : FlechaAbajo} alt="Flecha" className="flecha-admin" />
+                <img src={mostrarFechas ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
               </div>
               {mostrarFechas && (
                 <div className="lista-fechas">

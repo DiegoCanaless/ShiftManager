@@ -18,3 +18,27 @@
 a{
   text-decoration: none;
 }
+
+/* ICONOS */
+.icono-boxeo {
+  width: 40px;
+  height: 40px;
+}
+
+.icono-eliminar {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: red;
+}
+
+.icono-calendario {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.icono-flecha {
+  width: 15px;
+  height: 15px;
+}
