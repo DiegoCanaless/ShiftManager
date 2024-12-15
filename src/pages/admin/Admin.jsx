@@ -23,7 +23,7 @@ const Admin = () => {
   const [descripcionServicio, setDescripcionServicio] = useState("");
   const [direccionServicio, setDireccionServicio] = useState("");
   const [servicios, setServicios] = useState([]);
-  const [horarioTemporal, setHorarioTemporal] = useState("");
+  const [horarioTemporal, setHorarioTemporal] = useState({});
 
   useEffect(() => {
     const serviciosGuardados = JSON.parse(localStorage.getItem("servicios")) || [];
@@ -54,14 +54,35 @@ const Admin = () => {
     setFechasSeleccionadas(fechasSeleccionadas.filter((f) => f.date.getTime() !== fecha.date.getTime()));
   };
 
+  const eliminarHorario = (fecha, horario) => {
+    setFechasSeleccionadas(
+      fechasSeleccionadas.map((f) =>
+        f.date.getTime() === fecha.date.getTime()
+          ? { ...f, horarios: f.horarios.filter((h) => h !== horario) }
+          : f
+      )
+    );
+  };
+
+  const handleHorarioTemporalChange = (fecha, value) => {
+    setHorarioTemporal({
+      ...horarioTemporal,
+      [fecha.date.getTime()]: value,
+    });
+  };
+
   const agregarHorario = (fecha) => {
-    if (horarioTemporal) {
+    const horario = horarioTemporal[fecha.date.getTime()];
+    if (horario) {
       setFechasSeleccionadas(
         fechasSeleccionadas.map((f) =>
-          f.date.getTime() === fecha.date.getTime() ? { ...f, horarios: [...f.horarios, horarioTemporal] } : f
+          f.date.getTime() === fecha.date.getTime() ? { ...f, horarios: [...f.horarios, horario] } : f
         )
       );
-      setHorarioTemporal("");
+      setHorarioTemporal({
+        ...horarioTemporal,
+        [fecha.date.getTime()]: "",
+      });
     }
   };
 
@@ -243,6 +264,12 @@ const Admin = () => {
                       {fecha.horarios.map((horario, horarioIndex) => (
                         <div key={horarioIndex} className="horario-item">
                           {horario}
+                          <img
+                            src={IconoEliminar}
+                            alt="Eliminar"
+                            className="icono-eliminar"
+                            onClick={() => eliminarHorario(fecha, horario)}
+                          />
                         </div>
                       ))}
                       <div className="agregar-horario-item">
@@ -250,8 +277,8 @@ const Admin = () => {
                           type="time"
                           className="input-horario"
                           placeholder="Agregar horario"
-                          value={horarioTemporal}
-                          onChange={(e) => setHorarioTemporal(e.target.value)}
+                          value={horarioTemporal[fecha.date.getTime()] || ""}
+                          onChange={(e) => handleHorarioTemporalChange(fecha, e.target.value)}
                         />
                         <Boton
                           text="Agregar"
