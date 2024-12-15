@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 20px;
+  padding: 30px;
 }
 
 .campo-formulario-servicio {
@@ -35,7 +35,7 @@
   align-items: center;
   gap: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin-bottom: 20px;
 }
 
@@ -59,6 +59,7 @@
   align-items: flex-start;
   width: 100%;
   max-width: 400px;
+  margin-bottom: 20px;
 }
 
 .calendar-overlay {
@@ -91,7 +92,7 @@
 .lista-fechas {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   padding: 10px;
 }
 
@@ -106,6 +107,12 @@
 
 .fecha-item:last-child {
   border-bottom: none;
+}
+
+.fecha-con-eliminar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Desplegables */

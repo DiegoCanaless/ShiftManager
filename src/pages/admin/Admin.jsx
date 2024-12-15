@@ -20,6 +20,7 @@ const Admin = () => {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [mostrarFechas, setMostrarFechas] = useState(false);
   const [nombreServicio, setNombreServicio] = useState("");
+  const [descripcionServicio, setDescripcionServicio] = useState("");
   const [direccionServicio, setDireccionServicio] = useState("");
   const [servicios, setServicios] = useState([]);
   const [horarioTemporal, setHorarioTemporal] = useState("");
@@ -65,11 +66,12 @@ const Admin = () => {
   };
 
   const guardarServicio = () => {
-    if (!isFormValid()) return; // Add this validation check
-    
+    if (!isFormValid()) return;
+
     const nuevoServicio = {
       id: servicios.length + 1,
       titulo: nombreServicio,
+      descripcion: descripcionServicio,
       textoBtnA: "Administrar",
       textoBtnB: "Eliminar",
       icono: IconoBoxeo,
@@ -77,10 +79,12 @@ const Admin = () => {
       modalidad: modalidad,
       direccion: modalidad === "presencial" ? direccionServicio : null
     };
+
     const nuevosServicios = [...servicios, nuevoServicio];
     setServicios(nuevosServicios);
     localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
     setNombreServicio("");
+    setDescripcionServicio("");
     setDireccionServicio("");
     setFechasSeleccionadas([]);
   };
@@ -90,8 +94,9 @@ const Admin = () => {
     const hasModalidad = modalidad !== '';
     const hasAddress = modalidad === 'presencial' ? direccionServicio.trim() !== '' : true;
     const hasDates = fechasSeleccionadas.length > 0;
-  
-    return hasName && hasModalidad && hasAddress && hasDates;
+    const hasDescription = descripcionServicio.trim() !== '';
+
+    return hasName && hasModalidad && hasAddress && hasDates && hasDescription;
   };
 
   return (
@@ -133,6 +138,17 @@ const Admin = () => {
                 placeholder="Ingresa el nombre del servicio"
                 value={nombreServicio}
                 onChange={(e) => setNombreServicio(e.target.value)}
+              />
+            </div>
+
+            <div className='campo-formulario-servicio'>
+              <h3>Descripción:</h3>
+              <Input
+                className='input-formulario-servicio'
+                type="text"
+                placeholder="Ingresa la descripción del servicio"
+                value={descripcionServicio}
+                onChange={(e) => setDescripcionServicio(e.target.value)}
               />
             </div>
 
@@ -208,20 +224,22 @@ const Admin = () => {
 
             <div className="campo-fechas-servicio">
               <div className="desplegable-fechas-admin" onClick={toggleFechas}>
-                <h3>Fechas Actuales</h3>
+                <h3>Administrar horarios</h3>
                 <img src={mostrarFechas ? FlechaArriba : FlechaAbajo} alt="Flecha" className="flecha-admin" />
               </div>
               {mostrarFechas && (
                 <div className="lista-fechas">
                   {fechasSeleccionadas.map((fecha, index) => (
                     <div key={index} className="fecha-item">
-                      {new Date(fecha.date).toLocaleDateString()}
-                      <img
-                        src={IconoEliminar}
-                        alt="Eliminar"
-                        className="icono-eliminar"
-                        onClick={() => eliminarFecha(fecha)}
-                      />
+                      <div className="fecha-con-eliminar">
+                        {new Date(fecha.date).toLocaleDateString()}
+                        <img
+                          src={IconoEliminar}
+                          alt="Eliminar"
+                          className="icono-eliminar"
+                          onClick={() => eliminarFecha(fecha)}
+                        />
+                      </div>
                       {fecha.horarios.map((horario, horarioIndex) => (
                         <div key={horarioIndex} className="horario-item">
                           {horario}
