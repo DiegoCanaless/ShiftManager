@@ -120,6 +120,8 @@
 .fecha-con-eliminar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 50%;
   gap: 10px;
 }
 
@@ -152,9 +154,9 @@
 .horario-item {
   margin-top: 5px;
   display: flex;
-  align-items: center; /* Alinear los elementos horizontalmente */
-  justify-content: space-between; /* Espacio entre el horario y el ícono de eliminar */
-  width: 100%; /* Asegurar que el contenedor ocupe todo el ancho disponible */
+  align-items: center;
+  justify-content: space-between; 
+  width: 50%;
 }
 
 .agregar-horario-item {
