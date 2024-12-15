@@ -3,13 +3,13 @@
   flex-direction: column;
   background-color: var(--colorGrisacio);
 }
+
 .contenedor-servicios-admin {
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
 }
-  
-  /* Desplegable de servicios */
+
 .desplegable-servicios-admin {
   display: flex;
   flex-direction: row;
@@ -19,7 +19,7 @@
   cursor: pointer;
   padding: 10px 0;
 }
-  
+
 .desplegable-servicios-admin h2 {
   font-size: 1.2rem;
   margin: 0;
@@ -27,13 +27,14 @@
 
 .grid-servicios-admin {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  grid-template-columns: repeat(2, 1fr);
   margin-top: 10px;
+  row-gap: 30px;
 }
-  
+
 .flecha-admin {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .icono-boxeo {
@@ -41,9 +42,96 @@
   height: 40px;
 }
 
+.icono-eliminar {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: red; /* Cambia este valor al color que desees */
+}
+
+
+.formulario-detalles-servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.campo-formulario-servicio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.input-formulario-servicio {
+  width: 100%;
+  padding: 10px;
+}
+
+.formulario-servicio-modalidad {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .icono-calendario {
   width: 25px;
   height: 25px;
+}
+
+.icono-calendario:hover {
+  cursor: pointer;
+}
+
+.calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-accept-button {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--colorPrimario);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selected-day {
+  background-color: var(--colorPrimarioSuave) !important;
+  color: white !important;
+  border-radius: 30% !important;
 }
 
 .footer-simple {
@@ -51,7 +139,61 @@
   color: #fff;
   padding-left: 5px;
 }
+
 .footer-simple p {
   font-size: 0.8rem;
+} 
+
+.campo-fechas-servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  width: 100%;
+  max-width: 400px;
 }
-  
+
+.desplegable-fechas-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+    
+}
+
+.desplegable-fechas-admin h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.lista-fechas {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.fecha-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid #ddd;
+  gap: 20px;
+}
+
+.fecha-item:last-child {
+  border-bottom: none;
+}
+
+.eliminar-fecha {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.eliminar-fecha:hover {
+  text-decoration: underline;
+}
