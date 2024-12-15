@@ -65,6 +65,8 @@ const Admin = () => {
   };
 
   const guardarServicio = () => {
+    if (!isFormValid()) return; // Add this validation check
+    
     const nuevoServicio = {
       id: servicios.length + 1,
       titulo: nombreServicio,
@@ -81,6 +83,15 @@ const Admin = () => {
     setNombreServicio("");
     setDireccionServicio("");
     setFechasSeleccionadas([]);
+  };
+
+  const isFormValid = () => {
+    const hasName = nombreServicio.trim() !== '';
+    const hasModalidad = modalidad !== '';
+    const hasAddress = modalidad === 'presencial' ? direccionServicio.trim() !== '' : true;
+    const hasDates = fechasSeleccionadas.length > 0;
+  
+    return hasName && hasModalidad && hasAddress && hasDates;
   };
 
   return (
@@ -238,8 +249,12 @@ const Admin = () => {
 
             <Boton
               text="Guardar Servicio"
-              onClick={guardarServicio}
-              className="boton-violeta"
+              onClick={(e) => {
+                e.preventDefault();
+                guardarServicio();
+              }}
+              className={`boton-violeta ${!isFormValid() ? 'boton-disabled' : ''}`}
+              disabled={!isFormValid()}
             />
           </form>
         </div>

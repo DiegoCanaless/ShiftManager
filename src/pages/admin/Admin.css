@@ -1,3 +1,4 @@
+/* Contenedores principales */
 .contenedor-admin {
   display: flex;
   flex-direction: column;
@@ -10,21 +11,7 @@
   padding: 10px 20px;
 }
 
-.desplegable-servicios-admin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  cursor: pointer;
-  padding: 10px 0;
-}
-
-.desplegable-servicios-admin h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
+/* Grid Layout */
 .grid-servicios-admin {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -32,23 +19,7 @@
   row-gap: 30px;
 }
 
-.flecha-admin {
-  width: 15px;
-  height: 15px;
-}
-
-.icono-boxeo {
-  width: 40px;
-  height: 40px;
-}
-
-.icono-eliminar {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  color: red; /* Cambia este valor al color que desees */
-}
-
+/* Estilos del formulario */
 .formulario-detalles-servicio {
   display: flex;
   flex-direction: column;
@@ -73,6 +44,7 @@
   padding: 10px;
 }
 
+/* Seleccion de la modalidad */
 .formulario-servicio-modalidad {
   display: flex;
   align-items: center;
@@ -80,13 +52,13 @@
   gap: 10px;
 }
 
-.icono-calendario {
-  width: 25px;
-  height: 25px;
-}
-
-.icono-calendario:hover {
-  cursor: pointer;
+/* CSeleccion en el calendario */
+.campo-fechas-servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
 }
 
 .calendar-overlay {
@@ -115,44 +87,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.selected-day {
-  background-color: var(--colorPrimarioSuave) !important;
-  color: white !important;
-  border-radius: 30% !important;
-}
-
-.footer-simple {
-  background-color: var(--colorPrimario);
-  color: #fff;
-  padding-left: 5px;
-}
-
-.footer-simple p {
-  font-size: 0.8rem;
-}
-
-.campo-fechas-servicio {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 400px;
-}
-
-.desplegable-fechas-admin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.desplegable-fechas-admin h3 {
-  font-size: 1rem;
-  margin: 0;
-}
-
+/* Estilos para las fechas */
 .lista-fechas {
   display: flex;
   flex-direction: column;
@@ -173,6 +108,56 @@
   border-bottom: none;
 }
 
+/* Desplegables */
+.desplegable-servicios-admin,
+.desplegable-fechas-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.desplegable-servicios-admin {
+  padding: 10px 0;
+}
+
+.desplegable-servicios-admin h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.desplegable-fechas-admin h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Iconos */
+.flecha-admin {
+  width: 15px;
+  height: 15px;
+}
+
+.icono-boxeo {
+  width: 40px;
+  height: 40px;
+}
+
+.icono-eliminar {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: red;
+}
+
+.icono-calendario {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+/* Calendario */
 .horario-item {
   margin-top: 5px;
 }
@@ -190,6 +175,12 @@
   margin-top: 5px;
 }
 
+.selected-day {
+  background-color: var(--colorPrimarioSuave) !important;
+  color: white !important;
+  border-radius: 30% !important;
+}
+
 .eliminar-fecha {
   background: none;
   border: none;
@@ -199,4 +190,27 @@
 
 .eliminar-fecha:hover {
   text-decoration: underline;
+}
+
+/* Estados para el boton de guardar servicio */
+.boton-disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.boton-disabled:hover {
+  background-color: var(--colorPrimario) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Footer */
+.footer-simple {
+  background-color: var(--colorPrimario);
+  color: #fff;
+  padding-left: 5px;
+}
+
+.footer-simple p {
+  font-size: 0.8rem;
 }
