@@ -1,0 +1,121 @@
+
+
+/* Barra superior */
+.nav-estatico {
+    background-color: #4A3AFF; /* Color morado */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    position: sticky;
+    top: 0;
+
+}
+
+.nombreEmpresa {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.iconos-barra {
+    display: flex;
+    gap: 10px;
+}
+
+/* Títulos de secciones */
+.titulo-pendientes,
+.titulo-anteriores {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 15px 10px;
+     display: flex;
+    /* justify-content: space-between;  */
+    align-items: center;
+    color: #000000;
+}
+
+/* Icono desplegable */
+.icono-desplegable {
+    font-size: 16px;
+    cursor: pointer;
+    animation: none;
+}
+.bi-arrow-down-short, .bi-arrow-right-short {
+    font-size: 2rem;
+     margin-top: 1.5vh; 
+    color: black;
+    display: flex;
+    justify-content: center;
+    animation: none;
+  }
+
+/* Tarjetas de turnos */
+.card-turno {
+    background-color: #4A3AFF;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 15px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   
+}
+
+.titulo-consulta {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-datos {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white; 
+    font-family: "Nunito", sans-serif;
+}
+
+/* Botones */
+.btns-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-card {
+    background-color: #766BFF; /* Morado claro */
+    border: none;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+}
+
+.btn-card:hover {
+    background-color: #5A51CC; /* Morado más oscuro */
+}
+.turnos-anteriores{
+    margin-bottom: 40%;
+}
+
+/* Línea separadora */
+.linea-separadora {
+    height: 2px;
+    background-color: #C4C4C4;
+    margin: 15px 15px;
+}
+@media (min-width: 600px) {
+    .card-turno{
+        width: 30%;
+    }
+      
+    
+  }
+  @media (min-width: 1024px) {
+    .nav-estatico{
+        display: none;
+    }
+}

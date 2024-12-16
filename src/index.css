@@ -2,6 +2,7 @@
   --colorPrimario: #4A3AD1;
   --colorGrisacio: #F1F1F1;
   --colorFormulario: #352525;
+  --colorVioletaclaro: #8E94F2;
 }
 
 *{
@@ -11,7 +12,10 @@
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
 }
-
+p{
+  font-family: "Nunito", sans-serif;
+ 
+}
 
 a{
   text-decoration: none;
