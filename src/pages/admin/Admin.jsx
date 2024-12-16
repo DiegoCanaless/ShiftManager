@@ -16,7 +16,17 @@ import IconoCancha from "../../assets/svg/cancha.svg";
 import IconoClases from "../../assets/svg/clases.svg";
 import IconoClinic from "../../assets/svg/clinic.svg";
 import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
-import IconoPsicologo from "../../assets/svg/psicologo.svg";
+import IconoSalud from "../../assets/svg/salud.svg";
+import IconoCuadroVacio from "../../assets/svg/cuadro-vacio.svg";
+
+const iconos = [
+  { src: IconoBoxeo, className: "icono-boxeo" },
+  { src: IconoSalud, className: "icono-salud" },
+  { src: IconoClases, className: "icono-clases" },
+  { src: IconoClinic, className: "icono-clinic" },
+  { src: IconoPresentaciones, className: "icono-presentaciones" },
+  { src: IconoCancha, className: "icono-cancha" }
+];
 
 const Admin = () => {
   const [mostrarTodos, setMostrarTodos] = useState(false);
@@ -29,6 +39,9 @@ const Admin = () => {
   const [direccionServicio, setDireccionServicio] = useState("");
   const [servicios, setServicios] = useState([]);
   const [horarioTemporal, setHorarioTemporal] = useState({});
+  const [iconoSeleccionado, setIconoSeleccionado] = useState(null);
+  const [mostrarSelectorIcono, setMostrarSelectorIcono] = useState(false);
+  const [servicioEditando, setServicioEditando] = useState(null);
 
   useEffect(() => {
     const serviciosGuardados = JSON.parse(localStorage.getItem("servicios")) || [];
@@ -100,7 +113,8 @@ const Admin = () => {
       descripcion: descripcionServicio,
       textoBtnA: "Administrar",
       textoBtnB: "Eliminar",
-      icono: IconoBoxeo,
+      icono: iconoSeleccionado.src,
+      iconoClassName: iconoSeleccionado.className, // Guardar la clase del icono
       fechas: fechasSeleccionadas,
       modalidad: modalidad,
       direccion: modalidad === "presencial" ? direccionServicio : null
@@ -113,6 +127,50 @@ const Admin = () => {
     setDescripcionServicio("");
     setDireccionServicio("");
     setFechasSeleccionadas([]);
+    setIconoSeleccionado(null);
+  };
+
+  const editarServicio = (servicio) => {
+    setServicioEditando(servicio);
+    setNombreServicio(servicio.titulo);
+    setDescripcionServicio(servicio.descripcion);
+    setModalidad(servicio.modalidad);
+    setDireccionServicio(servicio.direccion || "");
+    setFechasSeleccionadas(servicio.fechas);
+    setIconoSeleccionado({ src: servicio.icono, className: servicio.iconoClassName });
+  };
+
+  const eliminarServicio = (id) => {
+    const nuevosServicios = servicios.filter((servicio) => servicio.id !== id);
+    setServicios(nuevosServicios);
+    localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
+  };
+
+  const actualizarServicio = () => {
+    if (!isFormValid()) return;
+
+    const servicioActualizado = {
+      ...servicioEditando,
+      titulo: nombreServicio,
+      descripcion: descripcionServicio,
+      modalidad: modalidad,
+      direccion: modalidad === "presencial" ? direccionServicio : null,
+      fechas: fechasSeleccionadas,
+      icono: iconoSeleccionado.src,
+      iconoClassName: iconoSeleccionado.className,
+    };
+
+    const nuevosServicios = servicios.map((servicio) =>
+      servicio.id === servicioActualizado.id ? servicioActualizado : servicio
+    );
+    setServicios(nuevosServicios);
+    localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
+    setServicioEditando(null);
+    setNombreServicio("");
+    setDescripcionServicio("");
+    setDireccionServicio("");
+    setFechasSeleccionadas([]);
+    setIconoSeleccionado(null);
   };
 
   const isFormValid = () => {
@@ -121,8 +179,9 @@ const Admin = () => {
     const hasAddress = modalidad === 'presencial' ? direccionServicio.trim() !== '' : true;
     const hasDates = fechasSeleccionadas.length > 0;
     const hasDescription = descripcionServicio.trim() !== '';
+    const hasIcon = iconoSeleccionado !== null;
 
-    return hasName && hasModalidad && hasAddress && hasDates && hasDescription;
+    return hasName && hasModalidad && hasAddress && hasDates && hasDescription && hasIcon;
   };
 
   return (
@@ -143,11 +202,13 @@ const Admin = () => {
                 titulo={servicio.titulo}
                 textoBtnA={servicio.textoBtnA}
                 textoBtnB={servicio.textoBtnB}
+                onClickBtnA={() => editarServicio(servicio)}
+                onClickBtnB={() => eliminarServicio(servicio.id)}
               >
                 <img
                   src={servicio.icono}
                   alt={servicio.titulo}
-                  className="icono-boxeo"
+                  className={`icono-opcion ${servicio.iconoClassName}`}
                 />
               </TarjetaServicio>
             ))}
@@ -297,13 +358,48 @@ const Admin = () => {
               )}
             </div>
 
+            <div className='campo-formulario-servicio'>
+              <label className='label-formulario-servicio'><h3>Icono:</h3></label>
+              <div className='icono-seleccionado' onClick={() => setMostrarSelectorIcono(true)}>
+                {iconoSeleccionado ? (
+                  <img src={iconoSeleccionado.src} alt="Icono seleccionado" className={`icono-opcion ${iconoSeleccionado.className}`} />
+                ) : (
+                  <img src={IconoCuadroVacio} alt="Icono vacío" className="icono-cuadro-vacio"/>
+                )}
+              </div>
+            </div>
+
+            {mostrarSelectorIcono && (
+              <div className="selector-icono-overlay">
+                <div className="selector-icono-container">
+                  <span className='close-selector-icono' onClick={() => setMostrarSelectorIcono(false)}>&times;</span>
+                  {iconos.map((icono, index) => (
+                    <img
+                      key={index}
+                      src={icono.src}
+                      alt={`Icono ${index}`}
+                      className={`icono-opcion ${icono.className}`}
+                      onClick={() => {
+                        setIconoSeleccionado(icono);
+                        setMostrarSelectorIcono(false);
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
             <Boton
-              text="Guardar Servicio"
+              text={servicioEditando ? "Editar Servicio" : "Guardar Servicio"}
               onClick={(e) => {
                 e.preventDefault();
-                guardarServicio();
+                if (servicioEditando) {
+                  actualizarServicio();
+                } else {
+                  guardarServicio();
+                }
               }}
-              className={`boton-violeta ${!isFormValid() ? 'boton-disabled' : ''}`}
+              className={`${servicioEditando ? 'boton-blanco' : 'boton-violeta'} ${!isFormValid() ? 'boton-disabled' : ''}`}
               disabled={!isFormValid()}
             />
           </form>
