@@ -1,7 +1,7 @@
-import React from 'react'
-import './TarjetaServicio.css'
+import React from 'react';
+import './TarjetaServicio.css';
 
-const TarjetaServicio = ({titulo, children, textoBtnA, textoBtnB, onClickBtnA, onClickBtnB}) => {
+const TarjetaServicio = ({ titulo, children, textoBtnA, textoBtnB, onClickBtnA, onClickBtnB }) => {
   return (
     <>
       <div className='contenedor-servicio'>
@@ -15,7 +15,7 @@ const TarjetaServicio = ({titulo, children, textoBtnA, textoBtnB, onClickBtnA, o
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default TarjetaServicio;
