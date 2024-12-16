@@ -207,7 +207,7 @@ const Admin = () => {
           </div>
 
           <div className="grid-servicios-admin">
-            {servicios.slice(0, mostrarTodos ? servicios.length : 2).map((servicio) => (
+            {servicios.slice(0, mostrarTodos ? servicios.length : 3).map((servicio) => (
               <TarjetaServicio
                 key={servicio.id}
                 titulo={servicio.titulo}

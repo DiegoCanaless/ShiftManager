@@ -16,7 +16,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(2, 0.35fr);
+  grid-template-columns: repeat(3, 0.5fr);
   margin-top: 10px;
   row-gap: 30px;
 }
