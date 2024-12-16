@@ -14,9 +14,40 @@
 /* Grid Layout */
 .grid-servicios-admin {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(2, 0.35fr);
   margin-top: 10px;
   row-gap: 30px;
+}
+
+/* Desplegables */
+.desplegable-servicios-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.desplegable-grid-servicios-admin {
+  margin-left: 5%;
+  padding: 10px 0;
+}
+
+.desplegable-grid-servicios-admin h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.desplegable-grid-servicios-admin,
+.desplegable-fechas-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
 }
 
 /* Estilos del formulario */
@@ -60,7 +91,7 @@
   gap: 10px;
 }
 
-/* CSeleccion en el calendario */
+/* Seleccion en el calendario */
 .campo-fechas-servicio {
   display: flex;
   flex-direction: column;
@@ -123,31 +154,6 @@
   justify-content: space-between;
   width: 50%;
   gap: 10px;
-}
-
-/* Desplegables */
-.desplegable-servicios-admin,
-.desplegable-fechas-admin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.desplegable-servicios-admin {
-  padding: 10px 0;
-}
-
-.desplegable-servicios-admin h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.desplegable-fechas-admin h3 {
-  font-size: 1rem;
-  margin: 0;
 }
 
 /* Calendario */
@@ -247,8 +253,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 2px solid var(--colorPrimario);
   border-radius: 10px;
   cursor: pointer;

@@ -144,6 +144,16 @@ const Admin = () => {
     const nuevosServicios = servicios.filter((servicio) => servicio.id !== id);
     setServicios(nuevosServicios);
     localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
+
+    // Si el servicio eliminado es el que se está editando, limpiar los campos
+    if (servicioEditando && servicioEditando.id === id) {
+      setServicioEditando(null);
+      setNombreServicio("");
+      setDescripcionServicio("");
+      setDireccionServicio("");
+      setFechasSeleccionadas([]);
+      setIconoSeleccionado(null);
+    }
   };
 
   const actualizarServicio = () => {
@@ -189,10 +199,11 @@ const Admin = () => {
       <NavBarSimple />
       <div className="contenedor-admin">
         <div className="contenedor-servicios-admin">
-          {/* Encabezado desplegable */}
-          <div className="desplegable-servicios-admin" onClick={toggleServicios}>
-            <h2>Servicios</h2>
-            <img src={mostrarTodos ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
+          <div className="desplegable-servicios-admin">
+            <div className="desplegable-grid-servicios-admin" onClick={toggleServicios}>
+              <h2>Servicios</h2>
+              <img src={mostrarTodos ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
+            </div>
           </div>
 
           <div className="grid-servicios-admin">
@@ -262,7 +273,7 @@ const Admin = () => {
             {/* Dependiendo de la modalidad elegida, se muestra o no el campo Dirección */}
             {modalidad === "presencial" && (
               <div className='campo-formulario-servicio'>
-                <label className='label-formulario-servicio'>Dirección:</label>
+                <label className='label-formulario-servicio'><h3>Dirección:</h3></label>
                 <Input
                   className='input-formulario-servicio'
                   type="text"
