@@ -228,6 +228,7 @@ const Admin = () => {
 
         <div className="formulario-servicio">
           <form action="#" className="formulario-detalles-servicio">
+            
             <div className='campo-formulario-servicio'>
               <label className='label-formulario-servicio'><h3>Nombre:</h3></label>
               <Input
@@ -236,17 +237,6 @@ const Admin = () => {
                 placeholder="Ingresa el nombre del servicio"
                 value={nombreServicio}
                 onChange={(e) => setNombreServicio(e.target.value)}
-              />
-            </div>
-
-            <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Descripción:</h3></label>
-              <Input
-                className='input-formulario-servicio'
-                type="text"
-                placeholder="Ingresa la descripción del servicio"
-                value={descripcionServicio}
-                onChange={(e) => setDescripcionServicio(e.target.value)}
               />
             </div>
 
@@ -283,6 +273,18 @@ const Admin = () => {
                 />
               </div>
             )}
+
+            <div className='campo-formulario-servicio'>
+              <label className='label-formulario-servicio'><h3>Descripción:</h3></label>
+              <Input
+                className='input-formulario-servicio'
+                type="text"
+                placeholder="Ingresa la descripción del servicio"
+                value={descripcionServicio}
+                onChange={(e) => setDescripcionServicio(e.target.value)}
+              />
+            </div>
+
 
             <div className='campo-formulario-servicio'>
               <label className='label-formulario-servicio'><h3>Administrar fechas:</h3></label>
