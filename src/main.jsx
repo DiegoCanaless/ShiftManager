@@ -10,6 +10,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Home></Home> */}
     {/* <Login></Login> */}
-    <Admin></Admin>
+    {/* <Admin></Admin> */}
+    <Admin/>
   </StrictMode>,
 )

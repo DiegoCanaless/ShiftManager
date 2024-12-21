@@ -57,8 +57,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 30px;
-  margin-top: 20px;
+  padding: 0px 30px;
   margin-bottom: 20px;
   gap: 20px;
 }
@@ -285,4 +284,18 @@
 .close-selector-icono:focus {
   color: var(--colorPrimario);
   text-decoration: none;
+}
+
+.ajuste{
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+  ;
+}
+
+@media (min-width: 442px){
+  .ajuste{
+    flex-direction: row;
+  } 
+
 }

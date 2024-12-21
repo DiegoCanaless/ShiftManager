@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Admin.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import NavBarSimple from "../../components/navbarsimple/navbarSimple";
 import TarjetaServicio from "../../components/tarjetaServicio/tarjetaServicio";
 import Input from "../../components/input/Input";
 import Boton from "../../components/boton/Boton";
@@ -18,6 +17,8 @@ import IconoClinic from "../../assets/svg/clinic.svg";
 import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
 import IconoSalud from "../../assets/svg/salud.svg";
 import IconoCuadroVacio from "../../assets/svg/cuadro-vacio.svg";
+import NavbarProfesional from "../../components/navbarProfesional/navbarProfesional"
+import NavbarUsuario from "../../components/navbarUsuario/navbarUsuario"
 
 const iconos = [
   { src: IconoBoxeo, className: "icono-boxeo" },
@@ -196,7 +197,7 @@ const Admin = () => {
 
   return (
     <>
-      <NavBarSimple />
+      <NavbarProfesional/>
       <div className="contenedor-admin">
         <div className="contenedor-servicios-admin">
           <div className="desplegable-servicios-admin">
@@ -252,21 +253,23 @@ const Admin = () => {
 
             <div className='campo-formulario-servicio'>
               <label className='label-formulario-servicio'><h3>Modalidad:</h3></label>
-              <div className="formulario-servicio-modalidad">
-                <Checkbox
-                  id="presencial"
-                  checked={modalidad === "presencial"}
-                  onChange={() => handleModalidadChange("presencial")}
-                />
-                <p>Presencial</p>
-              </div>
-              <div className="formulario-servicio-modalidad">
-                <Checkbox
-                  id="virtual"
-                  checked={modalidad === "virtual"}
-                  onChange={() => handleModalidadChange("virtual")}
-                />
-                <p>Virtual</p>
+              <div className="ajuste">
+                <div className="formulario-servicio-modalidad">
+                  <Checkbox
+                    id="presencial"
+                    checked={modalidad === "presencial"}
+                    onChange={() => handleModalidadChange("presencial")}
+                  />
+                  <p>Presencial</p>
+                </div>
+                <div className="formulario-servicio-modalidad">
+                  <Checkbox
+                    id="virtual"
+                    checked={modalidad === "virtual"}
+                    onChange={() => handleModalidadChange("virtual")}
+                  />
+                  <p>Virtual</p>
+                </div>
               </div>
             </div>
 

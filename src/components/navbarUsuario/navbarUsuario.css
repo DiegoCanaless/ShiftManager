@@ -1,0 +1,37 @@
+.contenedorLogoUsuario{
+    display: none;
+    align-items: center;
+    background-color: white;
+    padding: 4px 8px; 
+    border-radius: 8px;
+}
+
+@media (min-width:404px){
+    .contenedorLogoUsuario{
+        display: flex;
+    }
+
+    .contenedorLogoUsuario img{
+        width: 20px;
+        height: 20px;
+    }
+    
+    .contenedorLogoUsuario span{
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width:460px){
+    .contenedorLogoUsuario img{
+        width: 30px;
+        height: 30px;
+    }
+    
+    .contenedorLogoUsuario span{
+        font-size: 1rem;
+    }
+
+    .contenedorLogoUsuario{
+        padding: 2px 10px;
+    }
+}

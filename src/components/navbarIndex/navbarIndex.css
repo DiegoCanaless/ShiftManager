@@ -15,21 +15,21 @@
 }
 
 .linksNavbar{
-    position: relative; /* Necesario para el pseudo-elemento */
+    position: relative;
     color: white;
-    text-decoration: none; /* Sin subrayado predeterminado */
-    transition: color 0.5s; /* Transición para el color del texto */
+    text-decoration: none;
+    transition: color 0.5s;
 }
 
 .linksNavbar::after {
-    content: ""; /* Pseudo-elemento vacío */
+    content: "";
     position: absolute;
     left: 0;
-    bottom: -3px; /* Línea justo debajo del texto */
-    width: 0; /* Ancho inicial */
-    height: 2px; /* Grosor de la línea */
-    background-color: white; /* Color del subrayado */
-    transition: width 0.5s ease; /* Animación del ancho */
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.5s ease;
 }
 
 .linksNavbar:hover {
@@ -40,7 +40,6 @@
     width: 100%;
 }
 
-/* Estilo adicional para Pedir Turno si es necesario */
 .navPedirTurno:hover {
     background-color: white; /* Ejemplo: cambiar fondo al hacer hover */
     color: var(--colorPrimario); /* Cambiar color del texto */

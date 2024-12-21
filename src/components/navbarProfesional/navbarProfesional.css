@@ -1,0 +1,75 @@
+.navbarProfesional{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--colorPrimario);
+    padding: 5px 15px;
+    height: 10vh;
+}
+
+.navbarProfesionalEnlaces{
+    display: flex;
+    gap: 10px;
+}
+
+.navbarProfesionalEnlaces span{
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid white;
+}
+
+.contenedorLogoProfesional{
+    display: none;
+    align-items: center;
+    background-color: white;
+    padding: 4px 8px; 
+    border-radius: 8px;
+}
+
+.contenedorLogoProfesional img{
+    width: 20px;
+    height: 20px;
+}
+
+.contenedorLogoProfesional span{
+    font-size: 0.9rem;
+}
+
+@media (min-width: 352px){
+    .contenedorLogoProfesional{
+        display: flex;
+    }
+}
+
+@media (min-width: 460px){
+    .contenedorLogoProfesional img{
+        width: 30px;
+        height: 30px;
+    }
+    
+    .contenedorLogoProfesional span{
+        font-size: 1rem;
+    }
+
+    .contenedorLogoProfesional{
+        padding: 2px 10px;
+    }
+    
+    .navbarProfesional{
+        padding: 5px 5vw;
+    }
+
+    .navbarProfesionalEnlaces span {
+        gap: 2.5vw;
+        padding: 4px 15px;
+        width: 90px;
+        transition: background-color 0.5s, color 0.5s;
+    }
+    
+    .navbarProfesionalEnlaces span:hover {
+        background-color: white;
+        color: var(--colorPrimario);
+        cursor: pointer; 
+    }
+}
