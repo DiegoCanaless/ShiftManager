@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./Admin.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import NavBarSimple from "../../components/navbarsimple/navbarSimple";
 import TarjetaServicio from "../../components/tarjetaServicio/tarjetaServicio";
 import Input from "../../components/input/Input";
 import Boton from "../../components/boton/Boton";
 import FlechaAbajo from "../../assets/svg/flecha-abajo.svg";
 import FlechaArriba from "../../assets/svg/flecha-arriba.svg";
-import IconoBoxeo from "../../assets/svg/boxeo.svg";
 import Checkbox from "../../components/checkbox/Checkbox";
-import IconoCalendario from "../../assets/svg/calendario.svg";
-import IconoEliminar from "../../assets/svg/eliminar.svg";
-import IconoCancha from "../../assets/svg/cancha.svg";
+import IconoCuadroVacio from "../../assets/svg/cuadro-vacio.svg";
+import IconoBoxeo from "../../assets/svg/boxeo.svg";
+import IconoSalud from "../../assets/svg/salud.svg";
 import IconoClases from "../../assets/svg/clases.svg";
 import IconoClinic from "../../assets/svg/clinic.svg";
 import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
-import IconoSalud from "../../assets/svg/salud.svg";
-import IconoCuadroVacio from "../../assets/svg/cuadro-vacio.svg";
+import IconoCancha from "../../assets/svg/cancha.svg";
 
 const iconos = [
   { src: IconoBoxeo, className: "icono-boxeo" },
@@ -32,13 +28,10 @@ const Admin = () => {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const [modalidad, setModalidad] = useState("");
   const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
-  const [mostrarCalendario, setMostrarCalendario] = useState(false);
-  const [mostrarFechas, setMostrarFechas] = useState(false);
   const [nombreServicio, setNombreServicio] = useState("");
   const [descripcionServicio, setDescripcionServicio] = useState("");
   const [direccionServicio, setDireccionServicio] = useState("");
   const [servicios, setServicios] = useState([]);
-  const [horarioTemporal, setHorarioTemporal] = useState({});
   const [iconoSeleccionado, setIconoSeleccionado] = useState(null);
   const [mostrarSelectorIcono, setMostrarSelectorIcono] = useState(false);
   const [servicioEditando, setServicioEditando] = useState(null);
@@ -52,82 +45,11 @@ const Admin = () => {
     setMostrarTodos(!mostrarTodos);
   };
 
-  const toggleFechas = () => {
-    setMostrarFechas(!mostrarFechas);
-  };
-
   const handleModalidadChange = (newModalidad) => {
     setModalidad(newModalidad);
   };
-
-  const handleFechaSeleccionada = (date) => {
-    if (fechasSeleccionadas.some((fecha) => fecha.date.getTime() === date.getTime())) {
-      setFechasSeleccionadas(fechasSeleccionadas.filter((fecha) => fecha.date.getTime() !== date.getTime()));
-    } else {
-      setFechasSeleccionadas([...fechasSeleccionadas, { date, horarios: [] }]);
-    }
-  };
-
-  const eliminarFecha = (fecha) => {
-    setFechasSeleccionadas(fechasSeleccionadas.filter((f) => f.date.getTime() !== fecha.date.getTime()));
-  };
-
-  const eliminarHorario = (fecha, horario) => {
-    setFechasSeleccionadas(
-      fechasSeleccionadas.map((f) =>
-        f.date.getTime() === fecha.date.getTime()
-          ? { ...f, horarios: f.horarios.filter((h) => h !== horario) }
-          : f
-      )
-    );
-  };
-
-  const handleHorarioTemporalChange = (fecha, value) => {
-    setHorarioTemporal({
-      ...horarioTemporal,
-      [fecha.date.getTime()]: value,
-    });
-  };
-
-  const agregarHorario = (fecha) => {
-    const horario = horarioTemporal[fecha.date.getTime()];
-    if (horario) {
-      setFechasSeleccionadas(
-        fechasSeleccionadas.map((f) =>
-          f.date.getTime() === fecha.date.getTime() ? { ...f, horarios: [...f.horarios, horario] } : f
-        )
-      );
-      setHorarioTemporal({
-        ...horarioTemporal,
-        [fecha.date.getTime()]: "",
-      });
-    }
-  };
-
   const guardarServicio = () => {
-    if (!isFormValid()) return;
-
-    const nuevoServicio = {
-      id: servicios.length + 1,
-      titulo: nombreServicio,
-      descripcion: descripcionServicio,
-      textoBtnA: "Administrar",
-      textoBtnB: "Eliminar",
-      icono: iconoSeleccionado.src,
-      iconoClassName: iconoSeleccionado.className, // Guardar la clase del icono
-      fechas: fechasSeleccionadas,
-      modalidad: modalidad,
-      direccion: modalidad === "presencial" ? direccionServicio : null
-    };
-
-    const nuevosServicios = [...servicios, nuevoServicio];
-    setServicios(nuevosServicios);
-    localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
-    setNombreServicio("");
-    setDescripcionServicio("");
-    setDireccionServicio("");
-    setFechasSeleccionadas([]);
-    setIconoSeleccionado(null);
+    // No hace nada
   };
 
   const editarServicio = (servicio) => {
@@ -199,7 +121,7 @@ const Admin = () => {
       <NavBarSimple />
       <div className="contenedor-admin">
         <div className="contenedor-servicios-admin">
-          <div className="desplegable-servicios-admin">
+          <div className="contenedor-desplegable">
             <div className="desplegable-grid-servicios-admin" onClick={toggleServicios}>
               <h2>Servicios</h2>
               <img src={mostrarTodos ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
@@ -228,7 +150,6 @@ const Admin = () => {
 
         <div className="formulario-servicio">
           <form action="#" className="formulario-detalles-servicio">
-            
             <div className='campo-formulario-servicio'>
               <label className='label-formulario-servicio'><h3>Nombre:</h3></label>
               <Input
@@ -260,7 +181,6 @@ const Admin = () => {
               </div>
             </div>
 
-            {/* Dependiendo de la modalidad elegida, se muestra o no el campo Dirección */}
             {modalidad === "presencial" && (
               <div className='campo-formulario-servicio'>
                 <label className='label-formulario-servicio'><h3>Dirección:</h3></label>
@@ -283,92 +203,6 @@ const Admin = () => {
                 value={descripcionServicio}
                 onChange={(e) => setDescripcionServicio(e.target.value)}
               />
-            </div>
-
-
-            <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Administrar fechas:</h3></label>
-              <img
-                src={IconoCalendario}
-                alt="Calendario"
-                className="icono-calendario"
-                onClick={() => setMostrarCalendario(!mostrarCalendario)}
-              />
-            </div>
-
-            {/* Calendario donde se pueden elegir las distintas fechas para brindar el servicio */}
-            {mostrarCalendario && (
-              <div className="calendar-overlay">
-                <div className="calendar-container">
-                  <DatePicker
-                    selected={null}
-                    onChange={handleFechaSeleccionada}
-                    inline
-                    calendarClassName="custom-calendar"
-                    dayClassName={(date) =>
-                      fechasSeleccionadas.some((fecha) => fecha.date.getTime() === date.getTime())
-                        ? "selected-day"
-                        : ""
-                    }
-                    shouldCloseOnSelect={false}
-                    multiple
-                  />
-                  <Boton
-                    text="Aceptar"
-                    onClick={() => setMostrarCalendario(false)}
-                    className="boton-violeta"
-                  />
-                </div>
-              </div>
-            )}
-
-            <div className="campo-fechas-servicio">
-              <div className="desplegable-fechas-admin" onClick={toggleFechas}>
-                <h3>Administrar horarios</h3>
-                <img src={mostrarFechas ? FlechaArriba : FlechaAbajo} alt="Flecha" className="icono-flecha" />
-              </div>
-              {mostrarFechas && (
-                <div className="lista-fechas">
-                  {fechasSeleccionadas.map((fecha, index) => (
-                    <div key={index} className="fecha-item">
-                      <div className="fecha-con-eliminar">
-                        {new Date(fecha.date).toLocaleDateString()}
-                        <img
-                          src={IconoEliminar}
-                          alt="Eliminar"
-                          className="icono-eliminar"
-                          onClick={() => eliminarFecha(fecha)}
-                        />
-                      </div>
-                      {fecha.horarios.map((horario, horarioIndex) => (
-                        <div key={horarioIndex} className="horario-item">
-                          {horario}
-                          <img
-                            src={IconoEliminar}
-                            alt="Eliminar"
-                            className="icono-eliminar"
-                            onClick={() => eliminarHorario(fecha, horario)}
-                          />
-                        </div>
-                      ))}
-                      <div className="agregar-horario-item">
-                        <Input
-                          type="time"
-                          className="input-horario"
-                          placeholder="Agregar horario"
-                          value={horarioTemporal[fecha.date.getTime()] || ""}
-                          onChange={(e) => handleHorarioTemporalChange(fecha, e.target.value)}
-                        />
-                        <Boton
-                          text="Agregar"
-                          onClick={() => agregarHorario(fecha)}
-                          className="boton-violeta"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
 
             <div className='campo-formulario-servicio'>
@@ -401,21 +235,61 @@ const Admin = () => {
                 </div>
               </div>
             )}
-
-            <Boton
-              text={servicioEditando ? "Editar Servicio" : "Guardar Servicio"}
-              onClick={(e) => {
-                e.preventDefault();
-                if (servicioEditando) {
-                  actualizarServicio();
-                } else {
-                  guardarServicio();
-                }
-              }}
-              className={`${servicioEditando ? 'boton-blanco' : 'boton-violeta'} ${!isFormValid() ? 'boton-disabled' : ''}`}
-              disabled={!isFormValid()}
-            />
           </form>
+          <div className="fechas-horas-servicio">
+            <div className="contenedor-fechas">
+              <fieldset>
+                <legend><h3>Días disponibles:</h3></legend>
+                <div className="button-group">
+                  <input type="checkbox" id="lunes" name="dias" />
+                  <label htmlFor="lunes">Lunes</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="martes" name="dias" />
+                  <label htmlFor="martes">Martes</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="miercoles" name="dias" />
+                  <label htmlFor="miercoles">Miércoles</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="jueves" name="dias" />
+                  <label htmlFor="jueves">Jueves</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="viernes" name="dias" />
+                  <label htmlFor="viernes">Viernes</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="sabado" name="dias" />
+                  <label htmlFor="sabado">Sábado</label>
+                </div>
+                <div className="button-group">
+                  <input type="checkbox" id="domingo" name="dias" />
+                  <label htmlFor="domingo">Domingo</label>
+                </div>
+              </fieldset>
+            </div>
+            <div className="contenedor-horarios">
+              <h3>Franjas horarias:</h3>
+            </div>
+          </div>
+        </div>
+
+        <div className="contenedor-boton-accion">
+          <Boton
+            text={servicioEditando ? "Editar Servicio" : "Guardar Servicio"}
+            onClick={(e) => {
+              e.preventDefault();
+              if (servicioEditando) {
+                actualizarServicio();
+              } else {
+                guardarServicio();
+              }
+            }}
+            className={`${servicioEditando ? 'boton-blanco' : 'boton-violeta'} ${!isFormValid() ? 'boton-disabled' : ''}`}
+            disabled={!isFormValid()}
+          />
         </div>
       </div>
       <footer className='footer-simple'>
