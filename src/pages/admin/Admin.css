@@ -147,11 +147,11 @@
 
 .fecha-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   padding: 5px 10px;
   border-bottom: 1px solid #ddd;
-  gap: 5px;
+  gap: 10px;
 }
 
 .fecha-item:last-child {
