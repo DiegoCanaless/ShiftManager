@@ -14,6 +14,9 @@ import IconoClases from "../../assets/svg/clases.svg";
 import IconoClinic from "../../assets/svg/clinic.svg";
 import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
 import IconoCancha from "../../assets/svg/cancha.svg";
+import IconoEliminar from "../../assets/svg/eliminar.svg";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const iconos = [
   { src: IconoBoxeo, className: "icono-boxeo" },
@@ -27,7 +30,6 @@ const iconos = [
 const Admin = () => {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const [modalidad, setModalidad] = useState("");
-  const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
   const [nombreServicio, setNombreServicio] = useState("");
   const [descripcionServicio, setDescripcionServicio] = useState("");
   const [direccionServicio, setDireccionServicio] = useState("");
@@ -38,6 +40,10 @@ const Admin = () => {
   const [horarios, setHorarios] = useState([]);
   const [desde, setDesde] = useState("");
   const [hasta, setHasta] = useState("");
+  const [diasSeleccionados, setDiasSeleccionados] = useState([]);
+  const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
+  const [mostrarHorarios, setMostrarHorarios] = useState(false);
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
 
   useEffect(() => {
     const serviciosGuardados = JSON.parse(localStorage.getItem("servicios")) || [];
@@ -53,7 +59,30 @@ const Admin = () => {
   };
 
   const guardarServicio = () => {
-    // No hace nada
+    const nuevoServicio = {
+      id: Date.now(),
+      titulo: nombreServicio,
+      descripcion: descripcionServicio,
+      modalidad: modalidad,
+      direccion: modalidad === "presencial" ? direccionServicio : null,
+      icono: iconoSeleccionado.src,
+      iconoClassName: iconoSeleccionado.className,
+      calendarios: [
+        {
+          tipo: "dias",
+          dias: diasSeleccionados,
+          horarios: horarios
+        },
+        {
+          tipo: "fechas",
+          fechas: fechasSeleccionadas,
+          horarios: horarios
+        }
+      ]
+    };
+    setServicios([...servicios, nuevoServicio]);
+    localStorage.setItem("servicios", JSON.stringify([...servicios, nuevoServicio]));
+    limpiarFormulario();
   };
 
   const editarServicio = (servicio) => {
@@ -62,8 +91,10 @@ const Admin = () => {
     setDescripcionServicio(servicio.descripcion);
     setModalidad(servicio.modalidad);
     setDireccionServicio(servicio.direccion || "");
-    setFechasSeleccionadas(servicio.fechas);
     setIconoSeleccionado({ src: servicio.icono, className: servicio.iconoClassName });
+    setDiasSeleccionados(servicio.calendarios.find(c => c.tipo === "dias")?.dias || []);
+    setFechasSeleccionadas(servicio.calendarios.find(c => c.tipo === "fechas")?.fechas || []);
+    setHorarios(servicio.calendarios[0].horarios);
   };
 
   const eliminarServicio = (id) => {
@@ -71,14 +102,9 @@ const Admin = () => {
     setServicios(nuevosServicios);
     localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
 
-    // Si el servicio eliminado es el que se está editando, limpiar los campos
     if (servicioEditando && servicioEditando.id === id) {
       setServicioEditando(null);
-      setNombreServicio("");
-      setDescripcionServicio("");
-      setDireccionServicio("");
-      setFechasSeleccionadas([]);
-      setIconoSeleccionado(null);
+      limpiarFormulario();
     }
   };
 
@@ -91,9 +117,20 @@ const Admin = () => {
       descripcion: descripcionServicio,
       modalidad: modalidad,
       direccion: modalidad === "presencial" ? direccionServicio : null,
-      fechas: fechasSeleccionadas,
       icono: iconoSeleccionado.src,
       iconoClassName: iconoSeleccionado.className,
+      calendarios: [
+        {
+          tipo: "dias",
+          dias: diasSeleccionados,
+          horarios: horarios
+        },
+        {
+          tipo: "fechas",
+          fechas: fechasSeleccionadas,
+          horarios: horarios
+        }
+      ]
     };
 
     const nuevosServicios = servicios.map((servicio) =>
@@ -102,18 +139,14 @@ const Admin = () => {
     setServicios(nuevosServicios);
     localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
     setServicioEditando(null);
-    setNombreServicio("");
-    setDescripcionServicio("");
-    setDireccionServicio("");
-    setFechasSeleccionadas([]);
-    setIconoSeleccionado(null);
+    limpiarFormulario();
   };
 
   const isFormValid = () => {
     const hasName = nombreServicio.trim() !== '';
     const hasModalidad = modalidad !== '';
     const hasAddress = modalidad === 'presencial' ? direccionServicio.trim() !== '' : true;
-    const hasDates = fechasSeleccionadas.length > 0;
+    const hasDates = diasSeleccionados.length > 0 || fechasSeleccionadas.length > 0;
     const hasDescription = descripcionServicio.trim() !== '';
     const hasIcon = iconoSeleccionado !== null;
 
@@ -126,6 +159,41 @@ const Admin = () => {
       setDesde("");
       setHasta("");
     }
+  };
+
+  const eliminarHorario = (index) => {
+    const nuevosHorarios = horarios.filter((_, i) => i !== index);
+    setHorarios(nuevosHorarios);
+  };
+
+  const limpiarFormulario = () => {
+    setNombreServicio("");
+    setDescripcionServicio("");
+    setDireccionServicio("");
+    setModalidad("");
+    setIconoSeleccionado(null);
+    setDiasSeleccionados([]);
+    setFechasSeleccionadas([]);
+    setHorarios([]);
+  };
+
+  const handleDiaChange = (dia) => {
+    setDiasSeleccionados((prevDias) =>
+      prevDias.includes(dia) ? prevDias.filter((d) => d !== dia) : [...prevDias, dia]
+    );
+  };
+
+  const handleFechaChange = (fecha) => {
+    setFechasSeleccionadas((prevFechas) =>
+      prevFechas.includes(fecha) ? prevFechas.filter((f) => f !== fecha) : [...prevFechas, fecha]
+    );
+  };
+
+  const handleCalendarChange = (date) => {
+    setFechaSeleccionada(date);
+    setFechasSeleccionadas((prevFechas) =>
+      prevFechas.includes(date.toDateString()) ? prevFechas.filter((f) => f !== date.toDateString()) : [...prevFechas, date.toDateString()]
+    );
   };
 
   return (
@@ -249,35 +317,35 @@ const Admin = () => {
             )}
           </form>
           <div className="fechas-horas-servicio">
-          <h3>Días disponibles:</h3>
+            <h3>Días disponibles:</h3>
             <div className="contenedor-fechas">
               <fieldset>
                 <div className="button-group">
-                  <input type="checkbox" id="lunes" name="dias" />
+                  <input type="checkbox" id="lunes" name="dias" checked={diasSeleccionados.includes("lunes")} onChange={() => handleDiaChange("lunes")} />
                   <label htmlFor="lunes">Lunes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="martes" name="dias" />
+                  <input type="checkbox" id="martes" name="dias" checked={diasSeleccionados.includes("martes")} onChange={() => handleDiaChange("martes")} />
                   <label htmlFor="martes">Martes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="miercoles" name="dias" />
+                  <input type="checkbox" id="miercoles" name="dias" checked={diasSeleccionados.includes("miercoles")} onChange={() => handleDiaChange("miercoles")} />
                   <label htmlFor="miercoles">Miércoles</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="jueves" name="dias" />
+                  <input type="checkbox" id="jueves" name="dias" checked={diasSeleccionados.includes("jueves")} onChange={() => handleDiaChange("jueves")} />
                   <label htmlFor="jueves">Jueves</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="viernes" name="dias" />
+                  <input type="checkbox" id="viernes" name="dias" checked={diasSeleccionados.includes("viernes")} onChange={() => handleDiaChange("viernes")} />
                   <label htmlFor="viernes">Viernes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="sabado" name="dias" />
+                  <input type="checkbox" id="sabado" name="dias" checked={diasSeleccionados.includes("sabado")} onChange={() => handleDiaChange("sabado")} />
                   <label htmlFor="sabado">Sábado</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="domingo" name="dias" />
+                  <input type="checkbox" id="domingo" name="dias" checked={diasSeleccionados.includes("domingo")} onChange={() => handleDiaChange("domingo")} />
                   <label htmlFor="domingo">Domingo</label>
                 </div>
               </fieldset>
@@ -311,7 +379,48 @@ const Admin = () => {
                   onClick={agregarHorario}
                 />
               </div>
-              <p>Ver horarios ({horarios.length})</p>
+              <p className="ver-horarios" onClick={() => setMostrarHorarios(true)}>Ver horarios ({horarios.length})</p>
+            </div>
+
+            <div className="fechas-horas-servicio">
+              <h3>Fechas especiales:</h3>
+              <div className="calendario-especial-admin">
+                <Calendar
+                  onChange={handleCalendarChange}
+                  value={fechaSeleccionada}
+                />
+              </div>
+
+              <div className="contenedor-horarios">
+                <h3>Horarios para fechas especiales:</h3>
+                <div className="formulario-horarios">
+                  <div className='campo-horario'>
+                    <p>Desde:</p>
+                    <input
+                      type="time"
+                      className="input-horario"
+                      value={desde}
+                      onChange={(e) => setDesde(e.target.value)}
+                    />
+                  </div>
+                  <div className='campo-horario'>
+                    <p>Hasta:</p>
+                    <input
+                      type="time"
+                      className="input-horario"
+                      value={hasta}
+                      onChange={(e) => setHasta(e.target.value)}
+                    />
+                  </div>
+                  <Boton
+                    text="Agregar"
+                    className="boton-blanco"
+                    style={{ width: '100px' }}
+                    onClick={agregarHorario}
+                  />
+                </div>
+                <p className="ver-horarios" onClick={() => setMostrarHorarios(true)}>Ver horarios ({horarios.length})</p>
+              </div>
             </div>
           </div>
         </div>
@@ -332,6 +441,26 @@ const Admin = () => {
           />
         </div>
       </div>
+      {mostrarHorarios && (
+        <div className="calendar-overlay">
+          <div className="calendar-container">
+            <span className='close-selector-icono' onClick={() => setMostrarHorarios(false)}>&times;</span>
+            <div className="lista-fechas">
+              {horarios.map((horario, index) => (
+                <div key={index} className="fecha-item">
+                  {horario.desde} - {horario.hasta}
+                  <img
+                    src={IconoEliminar}
+                    alt="Eliminar"
+                    className="icono-eliminar"
+                    onClick={() => eliminarHorario(index)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       <footer className='footer-simple'>
         <p>© 2024 Shift Manager System. All rights reserved.</p>
       </footer>
