@@ -35,6 +35,9 @@ const Admin = () => {
   const [iconoSeleccionado, setIconoSeleccionado] = useState(null);
   const [mostrarSelectorIcono, setMostrarSelectorIcono] = useState(false);
   const [servicioEditando, setServicioEditando] = useState(null);
+  const [horarios, setHorarios] = useState([]);
+  const [desde, setDesde] = useState("");
+  const [hasta, setHasta] = useState("");
 
   useEffect(() => {
     const serviciosGuardados = JSON.parse(localStorage.getItem("servicios")) || [];
@@ -48,6 +51,7 @@ const Admin = () => {
   const handleModalidadChange = (newModalidad) => {
     setModalidad(newModalidad);
   };
+
   const guardarServicio = () => {
     // No hace nada
   };
@@ -114,6 +118,14 @@ const Admin = () => {
     const hasIcon = iconoSeleccionado !== null;
 
     return hasName && hasModalidad && hasAddress && hasDates && hasDescription && hasIcon;
+  };
+
+  const agregarHorario = () => {
+    if (desde && hasta) {
+      setHorarios([...horarios, { desde, hasta }]);
+      setDesde("");
+      setHasta("");
+    }
   };
 
   return (
@@ -237,9 +249,9 @@ const Admin = () => {
             )}
           </form>
           <div className="fechas-horas-servicio">
+          <h3>Días disponibles:</h3>
             <div className="contenedor-fechas">
               <fieldset>
-                <legend><h3>Días disponibles:</h3></legend>
                 <div className="button-group">
                   <input type="checkbox" id="lunes" name="dias" />
                   <label htmlFor="lunes">Lunes</label>
@@ -270,8 +282,36 @@ const Admin = () => {
                 </div>
               </fieldset>
             </div>
+
             <div className="contenedor-horarios">
-              <h3>Franjas horarias:</h3>
+              <h3>Horarios:</h3>
+              <div className="formulario-horarios">
+                <div className='campo-horario'>
+                  <p>Desde:</p>
+                  <input
+                    type="time"
+                    className="input-horario"
+                    value={desde}
+                    onChange={(e) => setDesde(e.target.value)}
+                  />
+                </div>
+                <div className='campo-horario'>
+                  <p>Hasta:</p>
+                  <input
+                    type="time"
+                    className="input-horario"
+                    value={hasta}
+                    onChange={(e) => setHasta(e.target.value)}
+                  />
+                </div>
+                <Boton
+                  text="Agregar"
+                  className="boton-blanco"
+                  style={{ width: '100px' }}
+                  onClick={agregarHorario}
+                />
+              </div>
+              <p>Ver horarios ({horarios.length})</p>
             </div>
           </div>
         </div>
