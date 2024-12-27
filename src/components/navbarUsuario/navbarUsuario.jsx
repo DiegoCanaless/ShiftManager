@@ -8,6 +8,7 @@ const navbarUsuario = () => {
             <div className="navbarProfesionalEnlaces">
                 <div><span>Pedir un Turno</span></div>
                 <div><span>Mis Turnos</span></div>
+                <div><span>Martin P.Disalvo</span></div>
             </div>
 
             <div className='contenedorLogoUsuario'>

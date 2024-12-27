@@ -1,15 +1,31 @@
 .navbarProfesional{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: var(--colorPrimario);
-    padding: 5px 15px;
+
     height: 10vh;
 }
 
+.logoutOption{
+    position: absolute;
+    top: 45px; /* Ajusta según el diseño */
+    background-color: white;
+    border: 1px solid var(--colorPrimario);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: var(--colorPrimario);
+    cursor: pointer;
+    z-index: 10;
+}
+
+
 .navbarProfesionalEnlaces{
     display: flex;
-    gap: 10px;
+    justify-content: space-around;
+    gap: 2px;
+    width: 100%;
 }
 
 .navbarProfesionalEnlaces span{
@@ -20,6 +36,7 @@
 }
 
 .contenedorLogoProfesional{
+    width: 200px;
     display: none;
     align-items: center;
     background-color: white;
@@ -36,13 +53,8 @@
     font-size: 0.9rem;
 }
 
-@media (min-width: 352px){
-    .contenedorLogoProfesional{
-        display: flex;
-    }
-}
-
 @media (min-width: 460px){
+
     .contenedorLogoProfesional img{
         width: 30px;
         height: 30px;
@@ -62,7 +74,7 @@
 
     .navbarProfesionalEnlaces span {
         gap: 2.5vw;
-        padding: 4px 15px;
+        padding: 0px 10px;
         width: 90px;
         transition: background-color 0.5s, color 0.5s;
     }
@@ -71,5 +83,17 @@
         background-color: white;
         color: var(--colorPrimario);
         cursor: pointer; 
+    }
+}
+
+@media (min-width:570px){
+    .contenedorLogoProfesional{
+        display: flex;
+    }
+
+    .navbarProfesionalEnlaces{
+        justify-content: start;
+        gap: 20px
+        ;
     }
 }

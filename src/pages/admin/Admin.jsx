@@ -18,7 +18,7 @@ import IconoPresentaciones from "../../assets/svg/presentaciones.svg";
 import IconoSalud from "../../assets/svg/salud.svg";
 import IconoCuadroVacio from "../../assets/svg/cuadro-vacio.svg";
 import NavbarProfesional from "../../components/navbarProfesional/navbarProfesional"
-import NavbarUsuario from "../../components/navbarUsuario/navbarUsuario"
+
 
 const iconos = [
   { src: IconoBoxeo, className: "icono-boxeo" },
