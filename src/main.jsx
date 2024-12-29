@@ -5,6 +5,7 @@ import Home from './pages/home/home.jsx'
 import Login from './pages/login/Login.jsx'
 import Admin from './pages/admin/Admin.jsx'
 import SuperAdmin from "./pages/superAdmin/superAdmin.jsx"
+import Secretario from "./pages/secretario/secretario.jsx"
 
 
 createRoot(document.getElementById('root')).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
     {/* <Home></Home> */}
     {/* <Login></Login> */}
     {/* <Admin></Admin> */}
-    <SuperAdmin/>
+    {/* <SuperAdmin/> */}
+    <Secretario/>
   </StrictMode>,
 )
