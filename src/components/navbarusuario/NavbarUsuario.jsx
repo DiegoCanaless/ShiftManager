@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./NavbarUsuario.css";
 
 const NavbarUsuario = () => {
@@ -38,9 +38,9 @@ const NavbarUsuario = () => {
       {(isDesktop || isOpen) && (
         <div className="navbar-menu">
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#pediTurno">Pedí un turno</a></li>
-            <li><a href="#misTurnos">Mis turnos</a></li>
+            <li><a href="#home"> <i className="bi bi-house"></i> Home</a></li>
+            <li><a href="#pediTurno"><i className="bi bi-journal-plus"></i> Pedí un turno</a></li>
+            <li><a href="#misTurnos"><i className="bi bi-file-earmark-person"></i> Mis turnos</a></li>
           </ul>
         </div>
       )}
