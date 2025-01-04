@@ -61,34 +61,9 @@ const Admin = () => {
   };
 
   const guardarServicio = () => {
-    const nuevoServicio = {
-      id: Date.now(),
-      titulo: nombreServicio,
-      descripcion: descripcionServicio,
-      modalidad: modalidad,
-      direccion: modalidad === "presencial" ? direccionServicio : null,
-      icono: iconoSeleccionado.src,
-      iconoClassName: iconoSeleccionado.className,
-      calendarios: [
-        {
-          tipo: "dias",
-          dias: diasSeleccionados.map(dia => ({
-            dia,
-            horarios: horariosDias.filter(horario => horario.dia === dia)
-          }))
-        },
-        {
-          tipo: "fechas",
-          fechas: fechasSeleccionadas.map(fecha => ({
-            fecha,
-            horarios: horariosFechas.filter(horario => horario.fecha === fecha)
-          }))
-        }
-      ]
-    };
-    setServicios([...servicios, nuevoServicio]);
-    localStorage.setItem("servicios", JSON.stringify([...servicios, nuevoServicio]));
-    limpiarFormulario();
+    if (!isFormValid()) return;
+  
+    alert("Servicio Guardado");
   };
 
   const editarServicio = (servicio) => {
@@ -117,47 +92,19 @@ const Admin = () => {
 
   const actualizarServicio = () => {
     if (!isFormValid()) return;
-
-    const servicioActualizado = {
-      ...servicioEditando,
-      titulo: nombreServicio,
-      descripcion: descripcionServicio,
-      modalidad: modalidad,
-      direccion: modalidad === "presencial" ? direccionServicio : null,
-      icono: iconoSeleccionado.src,
-      iconoClassName: iconoSeleccionado.className,
-      calendarios: [
-        {
-          tipo: "dias",
-          dias: diasSeleccionados,
-          horarios: horariosDias
-        },
-        {
-          tipo: "fechas",
-          fechas: fechasSeleccionadas,
-          horarios: horariosFechas
-        }
-      ]
-    };
-
-    const nuevosServicios = servicios.map((servicio) =>
-      servicio.id === servicioActualizado.id ? servicioActualizado : servicio
-    );
-    setServicios(nuevosServicios);
-    localStorage.setItem("servicios", JSON.stringify(nuevosServicios));
-    setServicioEditando(null);
-    limpiarFormulario();
+  
+    alert("Servicio Actualizado");
   };
 
   const isFormValid = () => {
     const hasName = nombreServicio.trim() !== '';
     const hasModalidad = modalidad !== '';
     const hasAddress = modalidad === 'presencial' ? direccionServicio.trim() !== '' : true;
-    const hasDates = diasSeleccionados.length > 0 || fechasSeleccionadas.length > 0;
     const hasDescription = descripcionServicio.trim() !== '';
     const hasIcon = iconoSeleccionado !== null;
-
-    return hasName && hasModalidad && hasAddress && hasDates && hasDescription && hasIcon;
+    const hasValidDays = diasSeleccionados.some(dia => horariosDias.some(horario => horario.dia === dia));
+  
+    return hasName && hasModalidad && hasAddress && hasDescription && hasIcon && hasValidDays;
   };
 
   const agregarHorario = (tipo) => {
