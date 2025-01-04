@@ -37,12 +37,14 @@ const Admin = () => {
   const [iconoSeleccionado, setIconoSeleccionado] = useState(null);
   const [mostrarSelectorIcono, setMostrarSelectorIcono] = useState(false);
   const [servicioEditando, setServicioEditando] = useState(null);
-  const [horarios, setHorarios] = useState([]);
+  const [horariosDias, setHorariosDias] = useState([]);
+  const [horariosFechas, setHorariosFechas] = useState([]);
   const [desde, setDesde] = useState("");
   const [hasta, setHasta] = useState("");
   const [diasSeleccionados, setDiasSeleccionados] = useState([]);
   const [fechasSeleccionadas, setFechasSeleccionadas] = useState([]);
-  const [mostrarHorarios, setMostrarHorarios] = useState(false);
+  const [mostrarHorariosDias, setMostrarHorariosDias] = useState(false);
+  const [mostrarHorariosFechas, setMostrarHorariosFechas] = useState(false);
   const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
 
   useEffect(() => {
@@ -70,13 +72,17 @@ const Admin = () => {
       calendarios: [
         {
           tipo: "dias",
-          dias: diasSeleccionados,
-          horarios: horarios
+          dias: diasSeleccionados.map(dia => ({
+            dia,
+            horarios: horariosDias.filter(horario => horario.dia === dia)
+          }))
         },
         {
           tipo: "fechas",
-          fechas: fechasSeleccionadas,
-          horarios: horarios
+          fechas: fechasSeleccionadas.map(fecha => ({
+            fecha,
+            horarios: horariosFechas.filter(horario => horario.fecha === fecha)
+          }))
         }
       ]
     };
@@ -94,7 +100,8 @@ const Admin = () => {
     setIconoSeleccionado({ src: servicio.icono, className: servicio.iconoClassName });
     setDiasSeleccionados(servicio.calendarios.find(c => c.tipo === "dias")?.dias || []);
     setFechasSeleccionadas(servicio.calendarios.find(c => c.tipo === "fechas")?.fechas || []);
-    setHorarios(servicio.calendarios[0].horarios);
+    setHorariosDias(servicio.calendarios[0].horarios);
+    setHorariosFechas(servicio.calendarios[1].horarios);
   };
 
   const eliminarServicio = (id) => {
@@ -123,12 +130,12 @@ const Admin = () => {
         {
           tipo: "dias",
           dias: diasSeleccionados,
-          horarios: horarios
+          horarios: horariosDias
         },
         {
           tipo: "fechas",
           fechas: fechasSeleccionadas,
-          horarios: horarios
+          horarios: horariosFechas
         }
       ]
     };
@@ -153,17 +160,36 @@ const Admin = () => {
     return hasName && hasModalidad && hasAddress && hasDates && hasDescription && hasIcon;
   };
 
-  const agregarHorario = () => {
+  const agregarHorario = (tipo) => {
     if (desde && hasta) {
-      setHorarios([...horarios, { desde, hasta }]);
+      const nuevoHorario = { desde, hasta };
+      if (tipo === "dias" && diasSeleccionados.length > 0) {
+        const nuevosHorarios = [];
+        diasSeleccionados.forEach(dia => {
+          nuevosHorarios.push({ ...nuevoHorario, dia });
+        });
+        setHorariosDias(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
+      }
+      if (tipo === "fechas" && fechasSeleccionadas.length > 0) {
+        const nuevosHorarios = [];
+        fechasSeleccionadas.forEach(fecha => {
+          nuevosHorarios.push({ ...nuevoHorario, fecha });
+        });
+        setHorariosFechas(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
+      }
       setDesde("");
       setHasta("");
     }
   };
 
-  const eliminarHorario = (index) => {
-    const nuevosHorarios = horarios.filter((_, i) => i !== index);
-    setHorarios(nuevosHorarios);
+  const eliminarHorario = (index, tipo) => {
+    if (tipo === "dias") {
+      const nuevosHorarios = horariosDias.filter((_, i) => i !== index);
+      setHorariosDias(nuevosHorarios);
+    } else {
+      const nuevosHorarios = horariosFechas.filter((_, i) => i !== index);
+      setHorariosFechas(nuevosHorarios);
+    }
   };
 
   const limpiarFormulario = () => {
@@ -174,7 +200,8 @@ const Admin = () => {
     setIconoSeleccionado(null);
     setDiasSeleccionados([]);
     setFechasSeleccionadas([]);
-    setHorarios([]);
+    setHorariosDias([]);
+    setHorariosFechas([]);
   };
 
   const handleDiaChange = (dia) => {
@@ -231,7 +258,7 @@ const Admin = () => {
         <div className="formulario-servicio">
           <form action="#" className="formulario-detalles-servicio">
             <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Nombre:</h3></label>
+              <h3>Nombre:</h3>
               <Input
                 className='input-formulario-servicio'
                 type="text"
@@ -242,28 +269,30 @@ const Admin = () => {
             </div>
 
             <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Modalidad:</h3></label>
-              <div className="formulario-servicio-modalidad">
-                <Checkbox
-                  id="presencial"
-                  checked={modalidad === "presencial"}
-                  onChange={() => handleModalidadChange("presencial")}
-                />
-                <p>Presencial</p>
-              </div>
-              <div className="formulario-servicio-modalidad">
-                <Checkbox
-                  id="virtual"
-                  checked={modalidad === "virtual"}
-                  onChange={() => handleModalidadChange("virtual")}
-                />
-                <p>Virtual</p>
+              <h3>Modalidad:</h3>
+              <div className="modalidades-servicio">
+                <div className="modalidad-servicio">
+                  <Checkbox
+                    id="presencial"
+                    checked={modalidad === "presencial"}
+                    onChange={() => handleModalidadChange("presencial")}
+                  />
+                  <p>Presencial</p>
+                </div>
+                <div className="modalidad-servicio">
+                  <Checkbox
+                    id="virtual"
+                    checked={modalidad === "virtual"}
+                    onChange={() => handleModalidadChange("virtual")}
+                  />
+                  <p>Virtual</p>
+                </div>
               </div>
             </div>
 
             {modalidad === "presencial" && (
               <div className='campo-formulario-servicio'>
-                <label className='label-formulario-servicio'><h3>Dirección:</h3></label>
+                <h3>Dirección:</h3>
                 <Input
                   className='input-formulario-servicio'
                   type="text"
@@ -275,7 +304,7 @@ const Admin = () => {
             )}
 
             <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Descripción:</h3></label>
+              <h3>Descripción:</h3>
               <Input
                 className='input-formulario-servicio'
                 type="text"
@@ -286,7 +315,7 @@ const Admin = () => {
             </div>
 
             <div className='campo-formulario-servicio'>
-              <label className='label-formulario-servicio'><h3>Icono:</h3></label>
+              <h3>Icono:</h3>
               <div className='icono-seleccionado' onClick={() => setMostrarSelectorIcono(true)}>
                 {iconoSeleccionado ? (
                   <img src={iconoSeleccionado.src} alt="Icono seleccionado" className={`icono-opcion ${iconoSeleccionado.className}`} />
@@ -318,8 +347,7 @@ const Admin = () => {
           </form>
           <div className="fechas-horas-servicio">
             <h3>Días disponibles:</h3>
-            <div className="contenedor-fechas">
-              <fieldset>
+            <fieldset className="contenedor-semana">
                 <div className="button-group">
                   <input type="checkbox" id="lunes" name="dias" checked={diasSeleccionados.includes("lunes")} onChange={() => handleDiaChange("lunes")} />
                   <label htmlFor="lunes">Lunes</label>
@@ -349,7 +377,6 @@ const Admin = () => {
                   <label htmlFor="domingo">Domingo</label>
                 </div>
               </fieldset>
-            </div>
 
             <div className="contenedor-horarios">
               <h3>Horarios:</h3>
@@ -376,11 +403,16 @@ const Admin = () => {
                   text="Agregar"
                   className="boton-blanco"
                   style={{ width: '100px' }}
-                  onClick={agregarHorario}
+                  onClick={() => agregarHorario("dias")}
                 />
               </div>
-              <p className="ver-horarios" onClick={() => setMostrarHorarios(true)}>Ver horarios ({horarios.length})</p>
+              <p className="ver-horarios" onClick={() => setMostrarHorariosDias(true)}>Ver horarios ({horariosDias.length})</p>
             </div>
+            <Boton
+                  text="Guardar"
+                  style={{ width: '100px' }}
+                  className="boton-violeta"
+            />
 
             <div className="fechas-horas-servicio">
               <h3>Fechas especiales:</h3>
@@ -416,12 +448,17 @@ const Admin = () => {
                     text="Agregar"
                     className="boton-blanco"
                     style={{ width: '100px' }}
-                    onClick={agregarHorario}
+                    onClick={() => agregarHorario("fechas")}
                   />
                 </div>
-                <p className="ver-horarios" onClick={() => setMostrarHorarios(true)}>Ver horarios ({horarios.length})</p>
+                <p className="ver-horarios" onClick={() => setMostrarHorariosFechas(true)}>Ver horarios ({horariosFechas.length})</p>
               </div>
             </div>
+            <Boton
+                  text="Guardar"
+                  style={{ width: '100px' }}
+                  className="boton-violeta"
+            />
           </div>
         </div>
 
@@ -441,19 +478,39 @@ const Admin = () => {
           />
         </div>
       </div>
-      {mostrarHorarios && (
+      {mostrarHorariosDias && (
         <div className="calendar-overlay">
           <div className="calendar-container">
-            <span className='close-selector-icono' onClick={() => setMostrarHorarios(false)}>&times;</span>
+            <span className='close-selector-icono' onClick={() => setMostrarHorariosDias(false)}>&times;</span>
             <div className="lista-fechas">
-              {horarios.map((horario, index) => (
+              {horariosDias.map((horario, index) => (
                 <div key={index} className="fecha-item">
                   {horario.desde} - {horario.hasta}
                   <img
                     src={IconoEliminar}
                     alt="Eliminar"
                     className="icono-eliminar"
-                    onClick={() => eliminarHorario(index)}
+                    onClick={() => eliminarHorario(index, "dias")}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {mostrarHorariosFechas && (
+        <div className="calendar-overlay">
+          <div className="calendar-container">
+            <span className='close-selector-icono' onClick={() => setMostrarHorariosFechas(false)}>&times;</span>
+            <div className="lista-fechas">
+              {horariosFechas.map((horario, index) => (
+                <div key={index} className="fecha-item">
+                  {horario.desde} - {horario.hasta}
+                  <img
+                    src={IconoEliminar}
+                    alt="Eliminar"
+                    className="icono-eliminar"
+                    onClick={() => eliminarHorario(index, "fechas")}
                   />
                 </div>
               ))}
