@@ -143,17 +143,14 @@
 .lista-fechas {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   padding: 10px;
   min-width: 150px;
 }
 
-.fecha-item {
+.dia-item, .fecha-item {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 5px 10px;
-  border-bottom: 1px solid #ddd;
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -171,11 +168,17 @@
 
 /* Calendario */
 .horario-item {
-  margin-top: 5px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 50%;
+  justify-content: center;
+  padding: 5px 10px;
+  gap: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.horario-item:last-child {
+  border-bottom: none;
 }
 
 .agregar-horario-item {

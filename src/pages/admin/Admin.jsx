@@ -161,26 +161,23 @@ const Admin = () => {
   };
 
   const agregarHorario = (tipo) => {
-    if (desde && hasta) {
-      const nuevoHorario = { desde, hasta };
-      if (tipo === "dias" && diasSeleccionados.length > 0) {
-        const nuevosHorarios = [];
-        diasSeleccionados.forEach(dia => {
-          nuevosHorarios.push({ ...nuevoHorario, dia });
-        });
-        setHorariosDias(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
-      }
-      if (tipo === "fechas" && fechasSeleccionadas.length > 0) {
-        const nuevosHorarios = [];
-        fechasSeleccionadas.forEach(fecha => {
-          nuevosHorarios.push({ ...nuevoHorario, fecha });
-        });
-        setHorariosFechas(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
-      }
-      setDesde("");
-      setHasta("");
+  if (desde && hasta) {
+    const nuevoHorario = { desde, hasta };
+    if (tipo === "dias" && diasSeleccionados.length > 0) {
+      const nuevosHorarios = [];
+      diasSeleccionados.forEach(dia => {
+        nuevosHorarios.push({ ...nuevoHorario, dia });
+      });
+      setHorariosDias(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
     }
-  };
+    if (tipo === "fechas" && fechaSeleccionada) {
+      const nuevosHorarios = [{ ...nuevoHorario, fecha: fechaSeleccionada.toDateString() }];
+      setHorariosFechas(prevHorarios => [...prevHorarios, ...nuevosHorarios]);
+    }
+    setDesde("");
+    setHasta("");
+  }
+};
 
   const eliminarHorario = (index, tipo) => {
     if (tipo === "dias") {
@@ -221,6 +218,28 @@ const Admin = () => {
     setFechasSeleccionadas((prevFechas) =>
       prevFechas.includes(date.toDateString()) ? prevFechas.filter((f) => f !== date.toDateString()) : [...prevFechas, date.toDateString()]
     );
+  };
+
+  const agruparHorariosPorDia = (horarios) => {
+    return horarios.reduce((acc, horario) => {
+      const { dia } = horario;
+      if (!acc[dia]) {
+        acc[dia] = [];
+      }
+      acc[dia].push(horario);
+      return acc;
+    }, {});
+  };
+  
+  const agruparHorariosPorFecha = (horarios) => {
+    return horarios.reduce((acc, horario) => {
+      const { fecha } = horario;
+      if (!acc[fecha]) {
+        acc[fecha] = [];
+      }
+      acc[fecha].push(horario);
+      return acc;
+    }, {});
   };
 
   return (
@@ -349,32 +368,32 @@ const Admin = () => {
             <h3>Días disponibles:</h3>
             <fieldset className="contenedor-semana">
                 <div className="button-group">
-                  <input type="checkbox" id="lunes" name="dias" checked={diasSeleccionados.includes("lunes")} onChange={() => handleDiaChange("lunes")} />
-                  <label htmlFor="lunes">Lunes</label>
+                  <input type="checkbox" id="Lunes" name="dias" checked={diasSeleccionados.includes("Lunes")} onChange={() => handleDiaChange("Lunes")} />
+                  <label htmlFor="Lunes">Lunes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="martes" name="dias" checked={diasSeleccionados.includes("martes")} onChange={() => handleDiaChange("martes")} />
-                  <label htmlFor="martes">Martes</label>
+                  <input type="checkbox" id="Martes" name="dias" checked={diasSeleccionados.includes("Martes")} onChange={() => handleDiaChange("Martes")} />
+                  <label htmlFor="Martes">Martes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="miercoles" name="dias" checked={diasSeleccionados.includes("miercoles")} onChange={() => handleDiaChange("miercoles")} />
-                  <label htmlFor="miercoles">Miércoles</label>
+                  <input type="checkbox" id="Miercoles" name="dias" checked={diasSeleccionados.includes("Miercoles")} onChange={() => handleDiaChange("Miercoles")} />
+                  <label htmlFor="Miercoles">Miércoles</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="jueves" name="dias" checked={diasSeleccionados.includes("jueves")} onChange={() => handleDiaChange("jueves")} />
-                  <label htmlFor="jueves">Jueves</label>
+                  <input type="checkbox" id="Jueves" name="dias" checked={diasSeleccionados.includes("Jueves")} onChange={() => handleDiaChange("Jueves")} />
+                  <label htmlFor="Jueves">Jueves</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="viernes" name="dias" checked={diasSeleccionados.includes("viernes")} onChange={() => handleDiaChange("viernes")} />
-                  <label htmlFor="viernes">Viernes</label>
+                  <input type="checkbox" id="Viernes" name="dias" checked={diasSeleccionados.includes("Viernes")} onChange={() => handleDiaChange("Viernes")} />
+                  <label htmlFor="Viernes">Viernes</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="sabado" name="dias" checked={diasSeleccionados.includes("sabado")} onChange={() => handleDiaChange("sabado")} />
+                  <input type="checkbox" id="Sabado" name="dias" checked={diasSeleccionados.includes("Sabado")} onChange={() => handleDiaChange("Sabado")} />
                   <label htmlFor="sabado">Sábado</label>
                 </div>
                 <div className="button-group">
-                  <input type="checkbox" id="domingo" name="dias" checked={diasSeleccionados.includes("domingo")} onChange={() => handleDiaChange("domingo")} />
-                  <label htmlFor="domingo">Domingo</label>
+                  <input type="checkbox" id="Domingo" name="dias" checked={diasSeleccionados.includes("Domingo")} onChange={() => handleDiaChange("Domingo")} />
+                  <label htmlFor="Domingo">Domingo</label>
                 </div>
               </fieldset>
 
@@ -406,15 +425,10 @@ const Admin = () => {
                   onClick={() => agregarHorario("dias")}
                 />
               </div>
-              <p className="ver-horarios" onClick={() => setMostrarHorariosDias(true)}>Ver horarios ({horariosDias.length})</p>
+              <p className="ver-horarios" onClick={() => setMostrarHorariosDias(true)}>Administrar ({horariosDias.length})</p>
             </div>
-            <Boton
-                  text="Guardar"
-                  style={{ width: '100px' }}
-                  className="boton-violeta"
-            />
 
-            <div className="fechas-horas-servicio">
+            <div className="contenedor-horarios">
               <h3>Fechas especiales:</h3>
               <div className="calendario-especial-admin">
                 <Calendar
@@ -451,14 +465,9 @@ const Admin = () => {
                     onClick={() => agregarHorario("fechas")}
                   />
                 </div>
-                <p className="ver-horarios" onClick={() => setMostrarHorariosFechas(true)}>Ver horarios ({horariosFechas.length})</p>
+                <p className="ver-horarios" onClick={() => setMostrarHorariosFechas(true)}>Administrar ({horariosFechas.length})</p>
               </div>
             </div>
-            <Boton
-                  text="Guardar"
-                  style={{ width: '100px' }}
-                  className="boton-violeta"
-            />
           </div>
         </div>
 
@@ -479,45 +488,55 @@ const Admin = () => {
         </div>
       </div>
       {mostrarHorariosDias && (
-        <div className="calendar-overlay">
-          <div className="calendar-container">
-            <span className='close-selector-icono' onClick={() => setMostrarHorariosDias(false)}>&times;</span>
-            <div className="lista-fechas">
-              {horariosDias.map((horario, index) => (
-                <div key={index} className="fecha-item">
-                  {horario.desde} - {horario.hasta}
-                  <img
-                    src={IconoEliminar}
-                    alt="Eliminar"
-                    className="icono-eliminar"
-                    onClick={() => eliminarHorario(index, "dias")}
-                  />
-                </div>
-              ))}
-            </div>
+      <div className="calendar-overlay">
+        <div className="calendar-container">
+          <span className='close-selector-icono' onClick={() => setMostrarHorariosDias(false)}>&times;</span>
+          <div className="lista-fechas">
+            {Object.entries(agruparHorariosPorDia(horariosDias)).map(([dia, horarios], index) => (
+              <div key={index} className="dia-item">
+                <h4>{dia}</h4>
+                {horarios.map((horario, idx) => (
+                  <div key={idx} className="horario-item">
+                    {horario.desde} - {horario.hasta}
+                    <img
+                      src={IconoEliminar}
+                      alt="Eliminar"
+                      className="icono-eliminar"
+                      onClick={() => eliminarHorario(idx, "dias")}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
-      )}
-      {mostrarHorariosFechas && (
-        <div className="calendar-overlay">
-          <div className="calendar-container">
-            <span className='close-selector-icono' onClick={() => setMostrarHorariosFechas(false)}>&times;</span>
-            <div className="lista-fechas">
-              {horariosFechas.map((horario, index) => (
-                <div key={index} className="fecha-item">
-                  {horario.desde} - {horario.hasta}
-                  <img
-                    src={IconoEliminar}
-                    alt="Eliminar"
-                    className="icono-eliminar"
-                    onClick={() => eliminarHorario(index, "fechas")}
-                  />
-                </div>
-              ))}
-            </div>
+      </div>
+    )}
+    {mostrarHorariosFechas && (
+      <div className="calendar-overlay">
+        <div className="calendar-container">
+          <span className='close-selector-icono' onClick={() => setMostrarHorariosFechas(false)}>&times;</span>
+          <div className="lista-fechas">
+            {Object.entries(agruparHorariosPorFecha(horariosFechas)).map(([fecha, horarios], index) => (
+              <div key={index} className="fecha-item">
+                <h4>{fecha}</h4>
+                {horarios.map((horario, idx) => (
+                  <div key={idx} className="horario-item">
+                    {horario.desde} - {horario.hasta}
+                    <img
+                      src={IconoEliminar}
+                      alt="Eliminar"
+                      className="icono-eliminar"
+                      onClick={() => eliminarHorario(idx, "fechas")}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </div>
+    )}
       <footer className='footer-simple'>
         <p>© 2024 Shift Manager System. All rights reserved.</p>
       </footer>
