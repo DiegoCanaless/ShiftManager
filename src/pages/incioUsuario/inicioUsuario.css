@@ -1,0 +1,255 @@
+
+
+/* Barra superior */
+.nav-estatico {
+    background-color: #4A3AFF; /* Color morado */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    position: sticky;
+    top: 0;
+
+}
+
+.nombreEmpresa {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.iconos-barra {
+    display: flex;
+    gap: 10px;
+}
+
+/* Títulos de secciones */
+.titulo-pendientes,
+.titulo-anteriores {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 15px 10px;
+     display: flex;
+    /* justify-content: space-between;  */
+    align-items: center;
+    color: #000000;
+}
+
+
+/* Icono desplegable */
+.icono-desplegable {
+    font-size: 16px;
+    cursor: pointer;
+    animation: none;
+}
+.bi-arrow-down-short, .bi-arrow-right-short {
+    font-size: 2rem;
+     margin-top: 1.5vh; 
+    color: black;
+    display: flex;
+    justify-content: center;
+    animation: none;
+  }
+
+/* Tarjetas de turnos */
+.card-turno {
+    background-color: #4A3AFF;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 15px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+   
+}
+.card-turno-anterior {
+    background-color: #8E94F2;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 15px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex: 0 0 30%; /* Ancho de la tarjeta (30% para que entren 3 en pantallas grandes) */
+    max-width: 300px;
+}
+
+.titulo-consulta {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-datos {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white; 
+    font-family: "Nunito", sans-serif;
+}
+
+/* Botones */
+.btns-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-card {
+    background-color: #8E94F2; /* Morado claro */
+    border: none;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+}
+
+.btn-card:hover {
+    background-color: #5A51CC; /* Morado más oscuro */
+}
+.turnos-anteriores{
+    margin-bottom: 40%;
+}
+
+/* Línea separadora */
+.linea-separadora {
+    height: 2px;
+    background-color: #C4C4C4;
+    margin: 15px 15px;
+}
+/* Animación para mostrar y ocultar */
+.turnos-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+  
+  .turnos-content.visible {
+    max-height: 500px; /* Ajusta según la altura máxima estimada de contenido */
+    opacity: 1;
+  }
+/*modal*/
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.modal-buttons .btn-card {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Contenedor de turnos */
+.turnos-content {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    flex-wrap: nowrap;
+    scrollbar-width: thin; /* Para navegadores compatibles */
+    scrollbar-color: #4A3AFF #C4C4C4; /* Colores de la barra de desplazamiento */
+  }
+  
+  .turnos-content::-webkit-scrollbar {
+    height: 8px; /* Altura de la barra de desplazamiento horizontal */
+  }
+  
+  .turnos-content::-webkit-scrollbar-thumb {
+    background-color: #4A3AFF; /* Color de la barra de desplazamiento */
+    border-radius: 10px;
+  }
+  
+  .turnos-content::-webkit-scrollbar-track {
+    background-color: #C4C4C4; /* Color del fondo de la barra de desplazamiento */
+  }
+  
+  /* Estilo de las tarjetas */
+  .card-turno {
+    background-color: #4A3AFF;
+    border-radius: 15px;
+    padding: 15px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex: 0 0 30%; /* Ancho de la tarjeta (30% para que entren 3 en pantallas grandes) */
+    max-width: 300px; /* Ancho máximo para limitar su tamaño */
+  }
+  
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .modal .btn-card {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #4A3AFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modal .btn-card:hover {
+    background-color: #372fcc;
+  }
+  
+
+@media (min-width: 600px) {
+    .card-turno{
+        width: 30%;
+    }
+      
+    
+  }
+  @media (min-width: 1024px) {
+    .nav-estatico{
+        display: none;
+    }
+}
