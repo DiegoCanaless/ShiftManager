@@ -4,6 +4,8 @@ import './index.css'
 import Home from './pages/home/home.jsx'
 import Login from './pages/login/Login.jsx'
 import Admin from './pages/admin/Admin.jsx'
+import SuperAdmin from "./pages/superAdmin/superAdmin.jsx"
+import Secretario from "./pages/secretario/secretario.jsx"
 
 import  InicioUsuario  from './pages/incioUsuario/inicioUsuario.jsx'
 
@@ -12,7 +14,8 @@ createRoot(document.getElementById('root')).render(
     {/* <Home></Home> */}
     {/* <Login></Login> */}
     <Admin></Admin>
-    <InicioUsuario></InicioUsuario>
-
-  </StrictMode>,
+    {/* <InicioUsuario></InicioUsuario> */}
+    {/* <SuperAdmin/> */}
+    {/* <Secretario/> */}
+  </StrictMode>
 )
